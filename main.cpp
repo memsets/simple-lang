@@ -18,14 +18,15 @@ int main(int argc, char *argv[])
     init_constants();
 
     QString source = "2 + 2";
-    QString source1 = "PI";
+    QString source1 = "hello = 9";
 
     Lexer lex(source1);
 
     QVector<Token> tokens = lex.tokenize();
     Parser parser(tokens);
 
-    qInfo() << parser.expression()->eval();
-
+    parser.statement()->exec();
+//    qInfo() << parser.expression()->eval();
+    qInfo() << VariableContainer::get("hello");
     a.exit(0);
 }

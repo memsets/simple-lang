@@ -6,6 +6,22 @@ Parser::Parser(QVector<Token> tokens) : tokens(tokens)
     this->size = tokens.size();
 }
 
+std::shared_ptr<Statement> Parser::statement()
+{
+    return assignmentStatement();
+}
+
+std::shared_ptr<Statement> Parser::assignmentStatement()
+{
+    if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::EQ) {
+        QString name = peek(0).getText();
+        match(TokenType::WORD);
+        match(TokenType::EQ);
+        return std::make_shared<AssignmentStatement>(AssignmentStatement(name, expression()));
+    }
+    qFatal("Unknown statement");
+}
+
 std::shared_ptr<Expression> Parser::expression()
 {
     return additive();

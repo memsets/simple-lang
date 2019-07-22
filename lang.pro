@@ -16,9 +16,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+        parser/ast/assignmentstatement.cpp \
         parser/ast/binaryexpression.cpp \
         parser/ast/expression.cpp \
         parser/ast/numberexpression.cpp \
+        parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
         parser/ast/variableexpression.cpp \
         parser/lexer.cpp \
@@ -34,9 +36,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
+    parser/ast/assignmentstatement.h \
     parser/ast/binaryexpression.h \
     parser/ast/expression.h \
     parser/ast/numberexpression.h \
+    parser/ast/statement.h \
     parser/ast/unaryexpression.h \
     parser/ast/variableexpression.h \
     parser/lexer.h \

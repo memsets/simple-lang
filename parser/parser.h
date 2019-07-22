@@ -13,7 +13,8 @@
 #include "ast/unaryexpression.h"
 #include "lib/variablecontainer.h"
 #include "ast/variableexpression.h"
-
+#include "ast/statement.h"
+#include "ast/assignmentstatement.h"
 
 class Parser
 {
@@ -22,6 +23,8 @@ class Parser
 
 public:
     Parser(QVector<Token> tokens);
+    std::shared_ptr<Statement> statement();
+    std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
     std::shared_ptr<Expression> additive();
     std::shared_ptr<Expression> multiplicative();

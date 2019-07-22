@@ -13,6 +13,7 @@ Lexer::Lexer(QString source) : source(source)
     this->operators["("] = TokenType::LPAREN;
     this->operators[")"] = TokenType::RPAREN;
     this->operators["%"] = TokenType::PER;
+    this->operators["="] = TokenType::EQ;
 }
 
 QVector<Token> Lexer::tokenize()
