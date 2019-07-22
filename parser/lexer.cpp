@@ -35,10 +35,17 @@ void Lexer::tokenizeNumber()
 {
     QChar current = source[pos];
 
+    bool pointReceived = false;
     QString buffer;
-    while (current.isDigit()) {
+    while (current.isDigit() || current == '.') {
+        if (pointReceived == true && current == '.') {
+            qFatal("float number parsing error (not expected point)");
+        }
+        if (current == '.') {
+            pointReceived = true;
+        }
         buffer.append(current);
-        current = next();;
+        current = next();
     }
     Token token(TokenType::NUM, buffer);
 

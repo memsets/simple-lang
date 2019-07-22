@@ -5,6 +5,7 @@
 #include <QChar>
 #include <QHash>
 #include <QString>
+#include <QDebug>
 
 #include "token.h"
 

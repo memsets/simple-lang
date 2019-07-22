@@ -1,6 +1,7 @@
 #include "binaryexpression.h"
 
-BinaryExpression::BinaryExpression(TokenType operation, Expression *expr1, Expression *expr2) : Expression(),
+BinaryExpression::BinaryExpression(TokenType operation, std::shared_ptr<Expression> expr1,
+                                   std::shared_ptr<Expression> expr2) : Expression(),
     operation(operation),
     expr1(expr1),
     expr2(expr2)
@@ -39,25 +40,26 @@ void BinaryExpression::setOperation(const TokenType &value)
     operation = value;
 }
 
-Expression *BinaryExpression::getExpr2() const
+std::shared_ptr<Expression> BinaryExpression::getExpr2() const
 {
     return expr2;
 }
 
-void BinaryExpression::setExpr2(Expression *value)
+void BinaryExpression::setExpr2(const std::shared_ptr<Expression> value)
 {
     expr2 = value;
 }
 
-Expression *BinaryExpression::getExpr1() const
+std::shared_ptr<Expression> BinaryExpression::getExpr1() const
 {
     return expr1;
 }
 
-void BinaryExpression::setExpr1(Expression *value)
+void BinaryExpression::setExpr1(const std::shared_ptr<Expression> value)
 {
     expr1 = value;
 }
+
 
 BinaryExpression::~BinaryExpression()
 {

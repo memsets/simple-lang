@@ -1,6 +1,6 @@
 #include "unaryexpression.h"
 
-UnaryExpression::UnaryExpression(TokenType operation, Expression *expr) : Expression(),
+UnaryExpression::UnaryExpression(TokenType operation, std::shared_ptr<Expression> expr) : Expression(),
     operation(operation),
     expr(expr)
 {
@@ -22,16 +22,6 @@ double UnaryExpression::eval()
     }
 }
 
-Expression *UnaryExpression::getExpr() const
-{
-    return expr;
-}
-
-void UnaryExpression::setExpr(Expression *value)
-{
-    expr = value;
-}
-
 TokenType UnaryExpression::getOperation() const
 {
     return operation;
@@ -42,7 +32,16 @@ void UnaryExpression::setOperation(const TokenType &value)
     operation = value;
 }
 
+std::shared_ptr<Expression> UnaryExpression::getExpr() const
+{
+    return expr;
+}
+
+void UnaryExpression::setExpr(const std::shared_ptr<Expression> value)
+{
+    expr = value;
+}
+
 UnaryExpression::~UnaryExpression()
 {
-    delete expr;
 }

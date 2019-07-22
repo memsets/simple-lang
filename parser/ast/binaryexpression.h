@@ -12,19 +12,20 @@
 class BinaryExpression : public Expression
 {
     TokenType operation;
-    Expression *expr1;
-    Expression *expr2;
+    std::shared_ptr<Expression> expr1;
+    std::shared_ptr<Expression> expr2;
 public:
-    BinaryExpression(TokenType operation, Expression *expr1, Expression *expr2);
+    BinaryExpression(TokenType operation, std::shared_ptr<Expression> expr1,
+                     std::shared_ptr<Expression> expr2);
     BinaryExpression();
     double eval() override;
     TokenType getOperation() const;
     void setOperation(const TokenType &value);
     ~BinaryExpression() override;
-    Expression *getExpr2() const;
-    void setExpr2(Expression *value);
-    Expression *getExpr1() const;
-    void setExpr1(Expression *value);
+    std::shared_ptr<Expression> getExpr2() const;
+    void setExpr2(const std::shared_ptr<Expression> value);
+    std::shared_ptr<Expression> getExpr1() const;
+    void setExpr1(const std::shared_ptr<Expression> value);
 };
 
 #endif // BINARYEXPRESSION_H

@@ -4,12 +4,14 @@
 #include <QVector>
 #include <QString>
 #include <QDebug>
+#include <memory>
 
 #include "token.h"
 #include "ast/expression.h"
 #include "ast/binaryexpression.h"
 #include "ast/numberexpression.h"
 #include "ast/unaryexpression.h"
+#include "lib/variablecontainer.h"
 
 class Parser
 {
@@ -18,11 +20,11 @@ class Parser
 
 public:
     Parser(QVector<Token> tokens);
-    Expression *expression();
-    Expression *additive();
-    Expression *multiplicative();
-    Expression *unary();
-    Expression *primary();
+    std::shared_ptr<Expression> expression();
+    std::shared_ptr<Expression> additive();
+    std::shared_ptr<Expression> multiplicative();
+    std::shared_ptr<Expression> unary();
+    std::shared_ptr<Expression> primary();
     Token peek(const int relativePosition) const;
     bool match(TokenType type);
 };

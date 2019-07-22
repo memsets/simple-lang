@@ -1,6 +1,6 @@
 QT -= gui
 
-CONFIG += c++11 console
+CONFIG += c++17 console
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
@@ -21,6 +21,7 @@ SOURCES += \
         parser/ast/numberexpression.cpp \
         parser/ast/unaryexpression.cpp \
         parser/lexer.cpp \
+        parser/lib/variablecontainer.cpp \
         parser/parser.cpp \
         parser/token.cpp
 
@@ -37,5 +38,6 @@ HEADERS += \
     parser/ast/numberexpression.h \
     parser/ast/unaryexpression.h \
     parser/lexer.h \
+    parser/lib/variablecontainer.h \
     parser/parser.h \
     parser/token.h

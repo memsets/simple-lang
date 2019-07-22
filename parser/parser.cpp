@@ -6,21 +6,23 @@ Parser::Parser(QVector<Token> tokens) : tokens(tokens)
     this->size = tokens.size();
 }
 
-Expression *Parser::expression()
+std::shared_ptr<Expression> Parser::expression()
 {
     return additive();
 }
 
-Expression *Parser::additive()
+std::shared_ptr<Expression> Parser::additive()
 {
-    Expression *expr = multiplicative();
+    auto expr = multiplicative();
 
     while (true) {
         if (match(TokenType::PLUS)) {
-            expr = new BinaryExpression(TokenType::PLUS, expr, multiplicative());
+            expr = std::make_shared<BinaryExpression>(BinaryExpression(TokenType::PLUS, expr,
+                                                                       multiplicative()));
             continue;
         } else if (match(TokenType::MINUS)) {
-            expr = new BinaryExpression(TokenType::MINUS, expr, multiplicative());
+            expr = std::make_shared<BinaryExpression>(BinaryExpression(TokenType::MINUS, expr,
+                                                                       multiplicative()));
             continue;
         }
         break;
@@ -28,19 +30,19 @@ Expression *Parser::additive()
     return expr;
 }
 
-Expression *Parser::multiplicative()
+std::shared_ptr<Expression> Parser::multiplicative()
 {
-    Expression *expr = unary();
+    auto expr = unary();
 
     while (true) {
         if (match(TokenType::STAR)) {
-            expr = new BinaryExpression(TokenType::STAR, expr, unary());
+            expr = std::make_shared<BinaryExpression>(BinaryExpression(TokenType::STAR, expr, unary()));
             continue;
         } else if (match(TokenType::SLASH)) {
-            expr = new BinaryExpression(TokenType::SLASH, expr, unary());
+            expr = std::make_shared<BinaryExpression>(BinaryExpression(TokenType::SLASH, expr, unary()));
             continue;
         } else if (match(TokenType::PER)) {
-            expr = new BinaryExpression(TokenType::PER, expr, unary());
+            expr = std::make_shared<BinaryExpression>(BinaryExpression(TokenType::PER, expr, unary()));
             continue;
         }
         break;
@@ -48,23 +50,23 @@ Expression *Parser::multiplicative()
     return expr;
 }
 
-Expression *Parser::unary()
+std::shared_ptr<Expression> Parser::unary()
 {
     if (match(TokenType::MINUS)) {
-        return new UnaryExpression(TokenType::MINUS, primary());
+        return std::make_shared<UnaryExpression>(UnaryExpression(TokenType::MINUS, primary()));
     } else if (match(TokenType::PLUS)) {
-        return new UnaryExpression(TokenType::PLUS, primary());
+        return std::make_shared<UnaryExpression>(UnaryExpression(TokenType::PLUS, primary()));
     }
     return primary();
 }
 
-Expression *Parser::primary()
+std::shared_ptr<Expression> Parser::primary()
 {
     Token current = peek(0);
     if (match(TokenType::NUM)) {
-        return new NumberExpression(current.getText().toDouble());
+        return std::make_shared<NumberExpression>(NumberExpression(current.getText().toDouble()));
     } else if (match(TokenType::LPAREN)) {
-        Expression *expr = expression();
+        std::shared_ptr<Expression> expr = expression();
         match(TokenType::RPAREN);
         return expr;
     } else {
