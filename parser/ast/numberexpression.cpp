@@ -10,7 +10,7 @@ void NumberExpression::setNumber(double value)
     number = value;
 }
 
-NumberExpression::NumberExpression(double number) : Expression (), number(number)
+NumberExpression::NumberExpression(const double number) : Expression (), number(number)
 {
 }
 

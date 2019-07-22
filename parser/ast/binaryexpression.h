@@ -8,7 +8,6 @@
 #include "../token.h"
 #include "expression.h"
 
-
 class BinaryExpression : public Expression
 {
     TokenType operation;

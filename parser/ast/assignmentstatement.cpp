@@ -5,6 +5,10 @@ AssignmentStatement::AssignmentStatement(QString name, std::shared_ptr<Expressio
 {
 }
 
+AssignmentStatement::AssignmentStatement()
+{
+}
+
 void AssignmentStatement::exec()
 {
     if (VariableContainer::isExists(name)) {

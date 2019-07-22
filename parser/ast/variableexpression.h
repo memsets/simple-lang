@@ -11,6 +11,7 @@ class VariableExpression : public Expression
     QString name;
 public:
     VariableExpression(QString name);
+    VariableExpression();
     double eval() override;
     QString getName() const;
     void setName(const QString &value);

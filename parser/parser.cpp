@@ -6,6 +6,10 @@ Parser::Parser(QVector<Token> tokens) : tokens(tokens)
     this->size = tokens.size();
 }
 
+Parser::Parser()
+{
+}
+
 std::shared_ptr<Statement> Parser::statement()
 {
     return assignmentStatement();
@@ -13,6 +17,7 @@ std::shared_ptr<Statement> Parser::statement()
 
 std::shared_ptr<Statement> Parser::assignmentStatement()
 {
+    // TODO: Needs refactoring this condition
     if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::EQ) {
         QString name = peek(0).getText();
         match(TokenType::WORD);
@@ -109,4 +114,34 @@ bool Parser::match(TokenType type)
         return true;
     }
     return false;
+}
+
+QVector<Token> Parser::getTokens() const
+{
+    return tokens;
+}
+
+void Parser::setTokens(const QVector<Token> &value)
+{
+    tokens = value;
+}
+
+int Parser::getPos() const
+{
+    return pos;
+}
+
+void Parser::setPos(int value)
+{
+    pos = value;
+}
+
+int Parser::getSize() const
+{
+    return size;
+}
+
+void Parser::setSize(int value)
+{
+    size = value;
 }

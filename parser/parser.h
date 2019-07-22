@@ -20,9 +20,9 @@ class Parser
 {
     QVector<Token> tokens;
     int pos, size;
-
 public:
     Parser(QVector<Token> tokens);
+    Parser();
     std::shared_ptr<Statement> statement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
@@ -32,6 +32,12 @@ public:
     std::shared_ptr<Expression> primary();
     Token peek(const int relativePosition) const;
     bool match(TokenType type);
+    QVector<Token> getTokens() const;
+    void setTokens(const QVector<Token> &value);
+    int getPos() const;
+    void setPos(int value);
+    int getSize() const;
+    void setSize(int value);
 };
 
 #endif // PARSER_H

@@ -9,13 +9,13 @@
 #include "statement.h"
 #include "../lib/variablecontainer.h"
 
-
 class AssignmentStatement : public Statement
 {
     QString name;
     std::shared_ptr<Expression> expr;
 public:
     AssignmentStatement(QString name, std::shared_ptr<Expression> expr);
+    AssignmentStatement();
     void exec() override;
     ~AssignmentStatement() override;
     QString getName() const;

@@ -13,9 +13,8 @@ class Lexer
 {
     static const QChar END;
     QHash<QString, TokenType> operators;
-
     QVector<Token> tokens;
-    QString source;
+    const QString source;
     int pos;
 public:
     Lexer(QString source);

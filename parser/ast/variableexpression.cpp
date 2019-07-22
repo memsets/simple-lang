@@ -14,6 +14,10 @@ VariableExpression::VariableExpression(QString name) : Expression(), name(name)
 {
 }
 
+VariableExpression::VariableExpression()
+{
+}
+
 double VariableExpression::eval()
 {
     if (!VariableContainer::isExists(name)) {

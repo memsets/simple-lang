@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     init_constants();
 
     QString source = "2 + 2";
-    QString source1 = "hello = 9";
+    QString source1 = "hello = 9 + 5";
 
     Lexer lex(source1);
 
@@ -28,5 +28,6 @@ int main(int argc, char *argv[])
     parser.statement()->exec();
 //    qInfo() << parser.expression()->eval();
     qInfo() << VariableContainer::get("hello");
+
     a.exit(0);
 }

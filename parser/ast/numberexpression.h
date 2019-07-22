@@ -1,15 +1,16 @@
 #ifndef NUMBEREXPRESSION_H
 #define NUMBEREXPRESSION_H
 
-#include "expression.h"
 #include <QChar>
 #include <memory>
+
+#include "expression.h"
 
 class NumberExpression : public Expression
 {
     double number;
 public:
-    NumberExpression(double number);
+    NumberExpression(const double number);
     NumberExpression();
     double eval() override;
     double getNumber() const;
