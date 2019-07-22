@@ -16,7 +16,10 @@ double VariableContainer::get(QString name)
     return container[name];
 }
 
-bool VariableContainer::isExists(QString name, double value)
+bool VariableContainer::isExists(QString name)
 {
-    return true;
+    if (container.contains(name)) {
+        return true;
+    }
+    return false;
 }

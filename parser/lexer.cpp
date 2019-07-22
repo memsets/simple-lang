@@ -24,6 +24,8 @@ QVector<Token> Lexer::tokenize()
             tokenizeNumber();
         } else if (operators.contains(current)) {
             tokenizeOperator();
+        } else if (current.isLetter()) {
+            tokenizeWord();
         } else {
             next();
         }
@@ -33,7 +35,7 @@ QVector<Token> Lexer::tokenize()
 
 void Lexer::tokenizeNumber()
 {
-    QChar current = source[pos];
+    QChar current = peek(0);
 
     bool pointReceived = false;
     QString buffer;
@@ -54,11 +56,26 @@ void Lexer::tokenizeNumber()
 
 void Lexer::tokenizeOperator()
 {
-    const QChar current = source[pos];
+    const QChar current = peek(0);
 
     Token token(operators[current], "");
     tokens.append(token);
     next();
+}
+
+void Lexer::tokenizeWord()
+{
+    QChar current = peek(0);
+
+    QString buffer;
+
+    while (current.isLetter()) {
+        buffer.append(current);
+
+        current = next();
+    }
+    Token token(TokenType::WORD, buffer);
+    tokens.append(token);
 }
 
 QChar Lexer::peek(const int relativePosition) const

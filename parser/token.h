@@ -6,7 +6,7 @@
 enum class TokenType
 {
     NUM, STAR, SLASH, MINUS, PLUS, PER,
-    LPAREN, RPAREN,
+    LPAREN, RPAREN, WORD,
 
     END
 };

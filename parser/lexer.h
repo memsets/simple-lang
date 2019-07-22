@@ -22,6 +22,7 @@ public:
     QVector<Token> tokenize();
     void tokenizeNumber();
     void tokenizeOperator();
+    void tokenizeWord();
     QChar peek(const int relativePosition) const;
     QChar next();
 };

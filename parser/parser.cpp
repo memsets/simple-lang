@@ -69,6 +69,8 @@ std::shared_ptr<Expression> Parser::primary()
         std::shared_ptr<Expression> expr = expression();
         match(TokenType::RPAREN);
         return expr;
+    } else if (match(TokenType::WORD)) {
+        return std::make_shared<VariableExpression>(VariableExpression(current.getText()));
     } else {
         qFatal("Unknown token");
     }

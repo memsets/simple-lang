@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     init_constants();
 
     QString source = "2 + 2";
-    QString source1 = "(2.111 + 2) * -2";
+    QString source1 = "PI";
 
     Lexer lex(source1);
 

@@ -12,6 +12,8 @@
 #include "ast/numberexpression.h"
 #include "ast/unaryexpression.h"
 #include "lib/variablecontainer.h"
+#include "ast/variableexpression.h"
+
 
 class Parser
 {

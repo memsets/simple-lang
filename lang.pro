@@ -20,6 +20,7 @@ SOURCES += \
         parser/ast/expression.cpp \
         parser/ast/numberexpression.cpp \
         parser/ast/unaryexpression.cpp \
+        parser/ast/variableexpression.cpp \
         parser/lexer.cpp \
         parser/lib/variablecontainer.cpp \
         parser/parser.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     parser/ast/expression.h \
     parser/ast/numberexpression.h \
     parser/ast/unaryexpression.h \
+    parser/ast/variableexpression.h \
     parser/lexer.h \
     parser/lib/variablecontainer.h \
     parser/parser.h \

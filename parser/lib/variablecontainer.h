@@ -13,7 +13,7 @@ public:
     VariableContainer();
     static void set(QString name, double value);
     static double get(QString name);
-    static bool isExists(QString name, double value);
+    static bool isExists(QString name);
 };
 
 //extern VariableContainer variables;
