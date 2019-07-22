@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QString>
+#include <QFile>
 
 #include "parser/lib/variablecontainer.h"
 #include "parser/lexer.h"
@@ -17,10 +18,14 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     init_constants();
 
-    QString source = "2 + 2";
-    QString source1 = "hello = 9 + 5";
+    QFile file("/home/sanicko/cpp-proj/lang/program.sl");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        qFatal("Could not open the file");
 
-    Lexer lex(source1);
+    QTextStream in(&file);
+    QString source = in.readAll();
+
+    Lexer lex(source);
 
     QVector<Token> tokens = lex.tokenize();
     Parser parser(tokens);
