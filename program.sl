@@ -2,7 +2,8 @@
 
 {
     {
-        hello = 5 + 5
+
     }
+    hello = 5 + 5
     print hello
 }

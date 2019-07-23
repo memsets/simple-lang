@@ -1,5 +1,7 @@
 #include "variablecontainer.h"
 
+QStack<QHash<QString, double>> VariableContainer::stack;
+
 QHash<QString, double> VariableContainer::container;
 
 VariableContainer::VariableContainer()
@@ -22,4 +24,14 @@ bool VariableContainer::isExists(QString name)
         return true;
     }
     return false;
+}
+
+void VariableContainer::push()
+{
+    stack.push(container);
+}
+
+void VariableContainer::pop()
+{
+    container = stack.pop();
 }

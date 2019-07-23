@@ -7,9 +7,11 @@ BlockStatement::BlockStatement(QVector<std::shared_ptr<Statement>> statements) :
 
 void BlockStatement::exec()
 {
+    VariableContainer::push();
     for (auto statement : statements) {
         statement->exec();
     }
+    VariableContainer::pop();
 }
 
 BlockStatement::~BlockStatement()
