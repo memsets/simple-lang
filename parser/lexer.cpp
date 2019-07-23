@@ -21,10 +21,12 @@ Lexer::Lexer(QString source) : source(source)
 QVector<Token> Lexer::tokenize()
 {
     while (pos < source.size()) {
-        QChar current = source[pos];
+        QChar current = peek(0);
 
         if (current.isDigit()) {
             tokenizeNumber();
+        } else if (current == '/' && peek(1) == '/') {
+            tokenizeComment();
         } else if (operators.contains(current)) {
             tokenizeOperator();
         } else if (current.isLetter()) {
@@ -88,6 +90,17 @@ void Lexer::tokenizeWord()
     }
 }
 
+void Lexer::tokenizeComment()
+{
+    next(2);
+    QChar current = peek(0);
+
+    while (current != '\n') {
+        current = next();
+    }
+
+}
+
 QChar Lexer::peek(const int relativePosition) const
 {
     const int position = pos + relativePosition;
@@ -97,8 +110,8 @@ QChar Lexer::peek(const int relativePosition) const
     return source[position];
 }
 
-QChar Lexer::next()
+QChar Lexer::next(int numOfPositions)
 {
-    pos++;
+    pos += numOfPositions;
     return peek(0);
 }

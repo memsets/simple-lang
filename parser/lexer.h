@@ -23,8 +23,9 @@ public:
     void tokenizeNumber();
     void tokenizeOperator();
     void tokenizeWord();
+    void tokenizeComment();
     QChar peek(const int relativePosition) const;
-    QChar next();
+    QChar next(int numOfPositions = 1);
 };
 
 #endif // LEXER_H
