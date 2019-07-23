@@ -14,11 +14,23 @@ QVector<std::shared_ptr<Statement>> Parser::statement()
 {
     QVector<std::shared_ptr<Statement>> statements;
 
-    // TODO: Needs refactoring this condition
-    while (peek(0).getType() != TokenType::END) {
-        statements.append(printStatement());
+    while (!match(TokenType::END)) {
+        statements.append(blockStatement());
     }
     return statements;
+}
+
+std::shared_ptr<Statement> Parser::blockStatement()
+{
+    auto statements = QVector<std::shared_ptr<Statement>>();
+    if (match(TokenType::LBRACE)) {
+        while (!match(TokenType::RBRACE)) {
+            statements.append(blockStatement());
+        }
+        return std::make_shared<BlockStatement>(BlockStatement(statements));
+    }
+    return printStatement();
+
 }
 
 std::shared_ptr<Statement> Parser::printStatement()

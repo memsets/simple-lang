@@ -7,6 +7,7 @@ enum class TokenType
 {
     NUM, STAR, SLASH, MINUS, PLUS, PER,
     LPAREN, RPAREN, WORD, EQ,
+    LBRACE, RBRACE,
 
     PRINT,
 

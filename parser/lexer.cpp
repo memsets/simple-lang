@@ -14,6 +14,8 @@ Lexer::Lexer(QString source) : source(source)
     this->operators[")"] = TokenType::RPAREN;
     this->operators["%"] = TokenType::PER;
     this->operators["="] = TokenType::EQ;
+    this->operators["{"] = TokenType::LBRACE;
+    this->operators["}"] = TokenType::RBRACE;
 
     this->keywords["print"] = TokenType::PRINT;
 }

@@ -16,6 +16,7 @@
 #include "ast/statement.h"
 #include "ast/assignmentstatement.h"
 #include "ast/printstatement.h"
+#include "ast/blockstatement.h"
 
 class Parser
 {
@@ -25,6 +26,7 @@ public:
     Parser(QVector<Token> tokens);
     Parser();
     QVector<std::shared_ptr<Statement>> statement();
+    std::shared_ptr<Statement> blockStatement();
     std::shared_ptr<Statement> printStatement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();

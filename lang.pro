@@ -18,6 +18,7 @@ SOURCES += \
         main.cpp \
         parser/ast/assignmentstatement.cpp \
         parser/ast/binaryexpression.cpp \
+        parser/ast/blockstatement.cpp \
         parser/ast/expression.cpp \
         parser/ast/numberexpression.cpp \
         parser/ast/printstatement.cpp \
@@ -40,6 +41,7 @@ DISTFILES += \
 HEADERS += \
     parser/ast/assignmentstatement.h \
     parser/ast/binaryexpression.h \
+    parser/ast/blockstatement.h \
     parser/ast/expression.h \
     parser/ast/numberexpression.h \
     parser/ast/printstatement.h \
