@@ -15,6 +15,7 @@
 #include "ast/variableexpression.h"
 #include "ast/statement.h"
 #include "ast/assignmentstatement.h"
+#include "ast/printstatement.h"
 
 class Parser
 {
@@ -23,7 +24,8 @@ class Parser
 public:
     Parser(QVector<Token> tokens);
     Parser();
-    std::shared_ptr<Statement> statement();
+    QVector<std::shared_ptr<Statement>> statement();
+    std::shared_ptr<Statement> printStatement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
     std::shared_ptr<Expression> additive();

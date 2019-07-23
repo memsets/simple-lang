@@ -10,8 +10,22 @@ Parser::Parser()
 {
 }
 
-std::shared_ptr<Statement> Parser::statement()
+QVector<std::shared_ptr<Statement>> Parser::statement()
 {
+    QVector<std::shared_ptr<Statement>> statements;
+
+    // TODO: Needs refactoring this condition
+    while (peek(0).getType() != TokenType::END) {
+        statements.append(printStatement());
+    }
+    return statements;
+}
+
+std::shared_ptr<Statement> Parser::printStatement()
+{
+    if (match(TokenType::PRINT)) {
+        return std::make_shared<PrintStatement>(PrintStatement(expression()));
+    }
     return assignmentStatement();
 }
 

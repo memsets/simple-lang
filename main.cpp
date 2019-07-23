@@ -30,9 +30,12 @@ int main(int argc, char *argv[])
     QVector<Token> tokens = lex.tokenize();
     Parser parser(tokens);
 
-    parser.statement()->exec();
+
+    for (auto st : parser.statement()) {
+        st->exec();
+    }
 //    qInfo() << parser.expression()->eval();
-    qInfo() << VariableContainer::get("hello");
+//    qInfo() << VariableContainer::get("hello");
 
     a.exit(0);
 }

@@ -14,6 +14,8 @@ Lexer::Lexer(QString source) : source(source)
     this->operators[")"] = TokenType::RPAREN;
     this->operators["%"] = TokenType::PER;
     this->operators["="] = TokenType::EQ;
+
+    this->keywords["print"] = TokenType::PRINT;
 }
 
 QVector<Token> Lexer::tokenize()
@@ -75,8 +77,15 @@ void Lexer::tokenizeWord()
 
         current = next();
     }
-    Token token(TokenType::WORD, buffer);
-    tokens.append(token);
+
+    if (keywords.contains(buffer)) {
+        Token token(keywords[buffer], "");
+        tokens.append(token);
+        return;
+    } else {
+        Token token(TokenType::WORD, buffer);
+        tokens.append(token);
+    }
 }
 
 QChar Lexer::peek(const int relativePosition) const
