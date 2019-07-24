@@ -18,7 +18,7 @@ VariableExpression::VariableExpression()
 {
 }
 
-double VariableExpression::eval()
+std::shared_ptr<Value> VariableExpression::eval()
 {
     if (!VariableContainer::isExists(name)) {
         qFatal("Variable is not exist");

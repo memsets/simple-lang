@@ -6,6 +6,8 @@
 
 #include "expression.h"
 #include "../token.h"
+#include "../lib/value.h"
+#include "../lib/doublevalue.h"
 
 class UnaryExpression : public Expression
 {
@@ -14,7 +16,7 @@ class UnaryExpression : public Expression
 public:
     UnaryExpression(TokenType operation, std::shared_ptr<Expression> expr);
     UnaryExpression();
-    double eval() override;
+    std::shared_ptr<Value> eval() override;
     TokenType getOperation() const;
     void setOperation(const TokenType &value);
     ~UnaryExpression() override;

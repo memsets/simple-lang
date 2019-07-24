@@ -1,11 +1,16 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 
+#include <memory>
+
+#include "../lib/value.h"
+
+
 class Expression
 {
 public:
     Expression();
-    virtual double eval() = 0;
+    virtual std::shared_ptr<Value> eval() = 0;
     virtual ~Expression();
 };
 

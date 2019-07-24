@@ -20,12 +20,14 @@ SOURCES += \
         parser/ast/binaryexpression.cpp \
         parser/ast/blockstatement.cpp \
         parser/ast/expression.cpp \
-        parser/ast/numberexpression.cpp \
         parser/ast/printstatement.cpp \
         parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
+        parser/ast/valueexpression.cpp \
         parser/ast/variableexpression.cpp \
         parser/lexer.cpp \
+        parser/lib/doublevalue.cpp \
+        parser/lib/value.cpp \
         parser/lib/variablecontainer.cpp \
         parser/parser.cpp \
         parser/token.cpp
@@ -43,12 +45,14 @@ HEADERS += \
     parser/ast/binaryexpression.h \
     parser/ast/blockstatement.h \
     parser/ast/expression.h \
-    parser/ast/numberexpression.h \
     parser/ast/printstatement.h \
     parser/ast/statement.h \
     parser/ast/unaryexpression.h \
+    parser/ast/valueexpression.h \
     parser/ast/variableexpression.h \
     parser/lexer.h \
+    parser/lib/doublevalue.h \
+    parser/lib/value.h \
     parser/lib/variablecontainer.h \
     parser/parser.h \
     parser/token.h

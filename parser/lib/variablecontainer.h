@@ -6,15 +6,18 @@
 #include <QString>
 #include <QChar>
 #include <QStack>
+#include <memory>
+
+#include "value.h"
 
 class VariableContainer
 {
-    static QStack<QHash<QString, double>> stack;
-    static QHash<QString, double> container;
+    static QStack<QHash<QString, std::shared_ptr<Value> >> stack;
+    static QHash<QString, std::shared_ptr<Value> > container;
 public:
     VariableContainer();
-    static void set(QString name, double value);
-    static double get(QString name);
+    static void set(QString name, std::shared_ptr<Value> value);
+    static std::shared_ptr<Value>  get(QString name);
     static bool isExists(QString name);
     static void push();
     static void pop();

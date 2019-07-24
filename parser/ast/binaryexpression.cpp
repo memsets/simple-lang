@@ -1,6 +1,7 @@
 #include "binaryexpression.h"
 
-BinaryExpression::BinaryExpression(TokenType operation, std::shared_ptr<Expression> expr1,
+BinaryExpression::BinaryExpression(TokenType operation,
+                                   std::shared_ptr<Expression> expr1,
                                    std::shared_ptr<Expression> expr2) : Expression(),
     operation(operation),
     expr1(expr1),
@@ -12,22 +13,31 @@ BinaryExpression::BinaryExpression()
 {
 }
 
-double BinaryExpression::eval()
+std::shared_ptr<Value> BinaryExpression::eval()
 {
-    switch (operation) {
-    case TokenType::PLUS:
-        return expr1->eval() + expr2->eval();
-    case TokenType::MINUS:
-        return expr1->eval() - expr2->eval();
-    case TokenType::STAR:
-        return expr1->eval() * expr2->eval();
-    case TokenType::SLASH:
-        return expr1->eval() / expr2->eval();
-    case TokenType::PER:
-        return static_cast<int>(expr1->eval()) % static_cast<int>(expr2->eval());
-    default:
-        return 0;
+    std::shared_ptr<Value> value1 = expr1->eval();
+    std::shared_ptr<Value> value2 = expr2->eval();
+
+    //TODO: Needs better solution for this condition
+    if (std::dynamic_pointer_cast<DoubleValue>(value1) &&
+            std::dynamic_pointer_cast<DoubleValue>(value2)) {
+        switch (operation) {
+        case TokenType::PLUS:
+            return std::make_shared<DoubleValue>(value1->asDouble() + value2->asDouble());
+        case TokenType::MINUS:
+            return std::make_shared<DoubleValue>(value1->asDouble() - value2->asDouble());
+        case TokenType::STAR:
+            return std::make_shared<DoubleValue>(value1->asDouble() * value2->asDouble());
+        case TokenType::SLASH:
+            return std::make_shared<DoubleValue>(value1->asDouble() / value2->asDouble());
+    //    case TokenType::PER:
+    //        return static_cast<int>(expr1->eval()) % static_cast<int>(expr2->eval());
+        default:
+            return nullptr;
+        }
     }
+    return nullptr;
+
 }
 
 TokenType BinaryExpression::getOperation() const

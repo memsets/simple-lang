@@ -10,7 +10,7 @@ PrintStatement::PrintStatement()
 
 void PrintStatement::exec()
 {
-    qInfo() << expr->eval();
+    qInfo() << expr->eval()->asString();
 }
 
 PrintStatement::~PrintStatement()

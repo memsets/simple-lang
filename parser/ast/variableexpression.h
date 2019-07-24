@@ -5,6 +5,7 @@
 
 #include "expression.h"
 #include "../lib/variablecontainer.h"
+#include "../lib/value.h"
 
 class VariableExpression : public Expression
 {
@@ -12,7 +13,7 @@ class VariableExpression : public Expression
 public:
     VariableExpression(QString name);
     VariableExpression();
-    double eval() override;
+    std::shared_ptr<Value> eval() override;
     QString getName() const;
     void setName(const QString &value);
 };

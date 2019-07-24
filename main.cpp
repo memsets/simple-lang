@@ -6,11 +6,12 @@
 #include "parser/lib/variablecontainer.h"
 #include "parser/lexer.h"
 #include "parser/parser.h"
+#include "parser/lib/doublevalue.h"
 
 void init_constants()
 {
-    VariableContainer::set("PI", 3.14);
-    VariableContainer::set("E", 2.7);
+    VariableContainer::set("PI", std::make_shared<DoubleValue>(3.14));
+    VariableContainer::set("E", std::make_shared<DoubleValue>(2.7));
 }
 
 int main(int argc, char *argv[])

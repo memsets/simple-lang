@@ -4,9 +4,13 @@
 #include <QChar>
 #include <iostream>
 #include <memory>
+#include <typeinfo>
 
 #include "../token.h"
 #include "expression.h"
+#include "../lib/value.h"
+#include "valueexpression.h"
+#include "../lib/doublevalue.h"
 
 class BinaryExpression : public Expression
 {
@@ -17,7 +21,7 @@ public:
     BinaryExpression(TokenType operation, std::shared_ptr<Expression> expr1,
                      std::shared_ptr<Expression> expr2);
     BinaryExpression();
-    double eval() override;
+    std::shared_ptr<Value> eval() override;
     TokenType getOperation() const;
     void setOperation(const TokenType &value);
     ~BinaryExpression() override;

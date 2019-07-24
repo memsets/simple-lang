@@ -10,13 +10,14 @@ UnaryExpression::UnaryExpression()
 {
 }
 
-double UnaryExpression::eval()
+std::shared_ptr<Value> UnaryExpression::eval()
 {
+    const double number = expr->eval()->asDouble();
     switch (operation) {
     case TokenType::MINUS:
-        return -expr->eval();
+        return std::make_shared<DoubleValue>(-number);
     case TokenType::PLUS:
-        return expr->eval();
+        return std::make_shared<DoubleValue>(number);
     default:
         qFatal("Unknown this unary operation");
     }

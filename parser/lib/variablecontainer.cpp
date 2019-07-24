@@ -1,19 +1,19 @@
 #include "variablecontainer.h"
 
-QStack<QHash<QString, double>> VariableContainer::stack;
+QStack<QHash<QString, std::shared_ptr<Value>>> VariableContainer::stack;
 
-QHash<QString, double> VariableContainer::container;
+QHash<QString, std::shared_ptr<Value>> VariableContainer::container;
 
 VariableContainer::VariableContainer()
 {
 }
 
-void VariableContainer::set(QString name, double value)
+void VariableContainer::set(QString name, std::shared_ptr<Value> value)
 {
     container[name] = value;
 }
 
-double VariableContainer::get(QString name)
+std::shared_ptr<Value>  VariableContainer::get(QString name)
 {
     return container[name];
 }

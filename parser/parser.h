@@ -9,7 +9,7 @@
 #include "token.h"
 #include "ast/expression.h"
 #include "ast/binaryexpression.h"
-#include "ast/numberexpression.h"
+#include "ast/valueexpression.h"
 #include "ast/unaryexpression.h"
 #include "lib/variablecontainer.h"
 #include "ast/variableexpression.h"
