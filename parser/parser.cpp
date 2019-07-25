@@ -118,6 +118,9 @@ std::shared_ptr<Expression> Parser::primary()
     if (match(TokenType::NUM)) {
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<DoubleValue>(current.getText().toDouble())));
+    } else if (match(TokenType::TEXT)) {
+        return std::make_shared<ValueExpression>(
+                    ValueExpression(std::make_shared<StringValue>(current.getText())));
     } else if (match(TokenType::LPAREN)) {
         std::shared_ptr<Expression> expr = expression();
         match(TokenType::RPAREN);

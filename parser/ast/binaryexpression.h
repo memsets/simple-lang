@@ -11,6 +11,7 @@
 #include "../lib/value.h"
 #include "valueexpression.h"
 #include "../lib/doublevalue.h"
+#include "../lib/stringvalue.h"
 
 class BinaryExpression : public Expression
 {

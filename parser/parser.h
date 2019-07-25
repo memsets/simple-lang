@@ -17,6 +17,7 @@
 #include "ast/assignmentstatement.h"
 #include "ast/printstatement.h"
 #include "ast/blockstatement.h"
+#include "lib/stringvalue.h"
 
 class Parser
 {

@@ -27,6 +27,8 @@ QVector<Token> Lexer::tokenize()
 
         if (current.isDigit()) {
             tokenizeNumber();
+        } else if (current == '\"') {
+            tokenizeText();
         } else if (current == '/' && peek(1) == '/') {
             tokenizeComment();
         } else if (operators.contains(current)) {
@@ -101,6 +103,20 @@ void Lexer::tokenizeComment()
         current = next();
     }
 
+}
+
+void Lexer::tokenizeText()
+{
+    next();
+    QChar current = peek(0);
+    QString buffer;
+    while (current != '\"') {
+        buffer.append(current);
+        current = next();
+    }
+    Token token(TokenType::TEXT, buffer);
+    tokens.append(token);
+    next();
 }
 
 QChar Lexer::peek(const int relativePosition) const

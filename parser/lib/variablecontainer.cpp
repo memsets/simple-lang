@@ -4,9 +4,7 @@ QStack<QHash<QString, std::shared_ptr<Value>>> VariableContainer::stack;
 
 QHash<QString, std::shared_ptr<Value>> VariableContainer::container;
 
-VariableContainer::VariableContainer()
-{
-}
+
 
 void VariableContainer::set(QString name, std::shared_ptr<Value> value)
 {

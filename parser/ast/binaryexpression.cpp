@@ -30,8 +30,17 @@ std::shared_ptr<Value> BinaryExpression::eval()
             return std::make_shared<DoubleValue>(value1->asDouble() * value2->asDouble());
         case TokenType::SLASH:
             return std::make_shared<DoubleValue>(value1->asDouble() / value2->asDouble());
-    //    case TokenType::PER:
-    //        return static_cast<int>(expr1->eval()) % static_cast<int>(expr2->eval());
+        case TokenType::PER:
+            return std::make_shared<DoubleValue>(
+                        static_cast<int>(value1->asDouble()) % static_cast<int>(value2->asDouble()));
+        default:
+            return nullptr;
+        }
+    } else if (std::dynamic_pointer_cast<StringValue>(value1) &&
+               std::dynamic_pointer_cast<StringValue>(value2)) {
+        switch (operation) {
+        case TokenType::PLUS:
+            return std::make_shared<StringValue>(value1->asString() + value2->asString());
         default:
             return nullptr;
         }

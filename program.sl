@@ -4,6 +4,6 @@
     {
 
     }
-    hello = 5 + 5
+    hello = "HELLO" + "world"
     print hello
 }
