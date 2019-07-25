@@ -31,6 +31,8 @@ QVector<Token> Lexer::tokenize()
             tokenizeText();
         } else if (current == '/' && peek(1) == '/') {
             tokenizeComment();
+        } else if (current == '/' && peek(1) == '*') {
+            tokenizeMultilineComment();
         } else if (operators.contains(current)) {
             tokenizeOperator();
         } else if (current.isLetter()) {
@@ -103,6 +105,17 @@ void Lexer::tokenizeComment()
         current = next();
     }
 
+}
+
+void Lexer::tokenizeMultilineComment()
+{
+    next(2);
+    QChar current = peek(0);
+
+    while (current != '*' && peek(1) == '/') {
+        current = next();
+    }
+    next(2);
 }
 
 void Lexer::tokenizeText()

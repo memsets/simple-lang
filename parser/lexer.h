@@ -24,6 +24,7 @@ public:
     void tokenizeOperator();
     void tokenizeWord();
     void tokenizeComment();
+    void tokenizeMultilineComment();
     void tokenizeText();
     QChar peek(const int relativePosition) const;
     QChar next(int numOfPositions = 1);
