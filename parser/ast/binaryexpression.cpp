@@ -44,6 +44,15 @@ std::shared_ptr<Value> BinaryExpression::eval()
         default:
             return nullptr;
         }
+    } else if (std::dynamic_pointer_cast<BooleanValue>(value1) &&
+               std::dynamic_pointer_cast<BooleanValue>(value2)) {
+        switch (operation) {
+        case TokenType::PLUS:
+            return std::make_shared<BooleanValue>(value1->asBoolean() + value2->asBoolean());
+        default:
+            return nullptr;
+        }
+
     }
     return nullptr;
 

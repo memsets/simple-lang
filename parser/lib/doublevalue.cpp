@@ -14,3 +14,10 @@ QString DoubleValue::asString()
 {
     return QString::number(value);
 }
+
+bool DoubleValue::asBoolean()
+{
+    if (value == 0.0)
+        return false;
+    return true;
+}

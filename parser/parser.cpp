@@ -127,6 +127,12 @@ std::shared_ptr<Expression> Parser::primary()
         return expr;
     } else if (match(TokenType::WORD)) {
         return std::make_shared<VariableExpression>(VariableExpression(current.getText()));
+    } else if (match(TokenType::TRUE)) {
+        return std::make_shared<ValueExpression>(
+                    ValueExpression(std::make_shared<BooleanValue>(true)));
+    } else if (match(TokenType::FALSE)) {
+        return std::make_shared<ValueExpression>(
+                    ValueExpression(std::make_shared<BooleanValue>(false)));
     } else {
         qFatal("Unknown token");
     }

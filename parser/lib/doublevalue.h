@@ -12,6 +12,7 @@ public:
     DoubleValue(double value);
     double asDouble() override;
     QString asString() override;
+    bool asBoolean() override;
 };
 
 #endif // DOUBLEVALUE_H

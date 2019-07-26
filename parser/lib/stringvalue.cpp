@@ -19,6 +19,13 @@ QString StringValue::asString()
     return value;
 }
 
+bool StringValue::asBoolean()
+{
+    if (value == "")
+        return false;
+    return true;
+}
+
 StringValue::~StringValue()
 {
 }

@@ -26,6 +26,7 @@ SOURCES += \
         parser/ast/valueexpression.cpp \
         parser/ast/variableexpression.cpp \
         parser/lexer.cpp \
+        parser/lib/booleanvalue.cpp \
         parser/lib/doublevalue.cpp \
         parser/lib/stringvalue.cpp \
         parser/lib/value.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     parser/ast/valueexpression.h \
     parser/ast/variableexpression.h \
     parser/lexer.h \
+    parser/lib/booleanvalue.h \
     parser/lib/doublevalue.h \
     parser/lib/stringvalue.h \
     parser/lib/value.h \

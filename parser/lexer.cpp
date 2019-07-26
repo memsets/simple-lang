@@ -18,6 +18,8 @@ Lexer::Lexer(QString source) : source(source)
     this->operators["}"] = TokenType::RBRACE;
 
     this->keywords["print"] = TokenType::PRINT;
+    this->keywords["true"] = TokenType::TRUE;
+    this->keywords["false"] = TokenType::FALSE;
 }
 
 QVector<Token> Lexer::tokenize()

@@ -5,5 +5,5 @@
 
     }
     hello = "HELLO" + "world"
-    print hello
+    print false + false + false
 }

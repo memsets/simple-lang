@@ -15,6 +15,7 @@ public:
 
     double asDouble() override;
     QString asString() override;
+    bool asBoolean() override;
 
     ~StringValue() override;
 };

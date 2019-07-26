@@ -9,7 +9,7 @@ enum class TokenType
     LPAREN, RPAREN, WORD, EQ,
     LBRACE, RBRACE,
 
-    PRINT,
+    PRINT, TRUE, FALSE,
 
     END
 };
