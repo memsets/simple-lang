@@ -6,16 +6,38 @@
 #include <memory>
 #include <QHash>
 #include <QString>
+#include <QDebug>
 
 #include "function.h"
 #include "doublevalue.h"
 
-class _sin : public Function
+class _native_sin : public Function
 {
 public:
     std::shared_ptr<Value> exec(QVector<std::shared_ptr<Value>> values) override
     {
         return std::make_shared<DoubleValue>(DoubleValue(sin(values[0]->asDouble())));
+    }
+};
+
+class _native_cos : public Function
+{
+public:
+    std::shared_ptr<Value> exec(QVector<std::shared_ptr<Value>> values) override
+    {
+        return std::make_shared<DoubleValue>(DoubleValue(cos(values[0]->asDouble())));
+    }
+};
+
+class _native_print : public Function
+{
+public:
+    std::shared_ptr<Value> exec(QVector<std::shared_ptr<Value>> values) override
+    {
+        for (auto &value : values) {
+            qInfo() << value->asString();
+        }
+        return std::make_shared<DoubleValue>(DoubleValue(0.0));
     }
 };
 

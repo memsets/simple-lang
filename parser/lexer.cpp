@@ -25,7 +25,6 @@ Lexer::Lexer(QString source) : source(source)
     this->operators["<="] = TokenType::LTEQ;
     this->operators[">="] = TokenType::GTEQ;
 
-    this->keywords["print"] = TokenType::PRINT;
     this->keywords["true"] = TokenType::TRUE;
     this->keywords["false"] = TokenType::FALSE;
     this->keywords["and"] = TokenType::AND;
@@ -82,16 +81,18 @@ void Lexer::tokenizeOperator()
     QChar current = peek(0);
 
     QString buffer;
-    while (OPERATOR_CHARS.indexOf(current) != -1) {
-        buffer.append(current);
-        current = next();
-    }
 
-    if (operators.values().contains(operators[buffer])) {
+    buffer.append(current);
+    buffer.append(peek(1));
+
+    if (operators.keys().contains(buffer)) {
+        next(2);
         Token token(operators[buffer], buffer);
         tokens.append(token);
     } else {
-        qFatal("Unknown operator");
+        Token token(operators[current], current);
+        tokens.append(token);
+        next();
     }
 }
 

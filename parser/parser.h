@@ -20,7 +20,7 @@
 #include "lib/stringvalue.h"
 #include "lib/booleanvalue.h"
 #include "ast/functionexpression.h"
-
+#include "ast/functionstatement.h"
 
 class Parser
 {
@@ -31,7 +31,7 @@ public:
     Parser();
     QVector<std::shared_ptr<Statement>> statement();
     std::shared_ptr<Statement> blockStatement();
-    std::shared_ptr<Statement> printStatement();
+    std::shared_ptr<Statement> functionStatement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
     std::shared_ptr<Expression> logical();
@@ -42,12 +42,6 @@ public:
     std::shared_ptr<Expression> primary();
     Token peek(const int relativePosition) const;
     bool match(TokenType type);
-    QVector<Token> getTokens() const;
-    void setTokens(const QVector<Token> &value);
-    int getPos() const;
-    void setPos(int value);
-    int getSize() const;
-    void setSize(int value);
 };
 
 #endif // PARSER_H

@@ -29,14 +29,26 @@ std::shared_ptr<Statement> Parser::blockStatement()
         }
         return std::make_shared<BlockStatement>(BlockStatement(statements));
     }
-    return printStatement();
+    return functionStatement();
 
 }
 
-std::shared_ptr<Statement> Parser::printStatement()
+std::shared_ptr<Statement> Parser::functionStatement()
 {
-    if (match(TokenType::PRINT)) {
-        return std::make_shared<PrintStatement>(PrintStatement(expression()));
+    if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LPAREN) {
+        QString name = peek(0).getText();
+
+        match(TokenType::WORD);
+        match(TokenType::LPAREN);
+
+        QVector<std::shared_ptr<Expression>> args;
+        while (!match(TokenType::RPAREN)) {
+            args.append(expression());
+            match(TokenType::COMMA);
+        }
+
+        return std::make_shared<FunctionStatement>(FunctionStatement(name, args));
+
     }
     return assignmentStatement();
 }
@@ -172,6 +184,7 @@ std::shared_ptr<Expression> Parser::primary()
     if (match(TokenType::NUM)) {
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<DoubleValue>(current.getText().toDouble())));
+        // TODO: Needs refactoring this condition
     } else if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LPAREN) {
         match(TokenType::WORD);
         match(TokenType::LPAREN);
@@ -218,34 +231,4 @@ bool Parser::match(TokenType type)
         return true;
     }
     return false;
-}
-
-QVector<Token> Parser::getTokens() const
-{
-    return tokens;
-}
-
-void Parser::setTokens(const QVector<Token> &value)
-{
-    tokens = value;
-}
-
-int Parser::getPos() const
-{
-    return pos;
-}
-
-void Parser::setPos(int value)
-{
-    pos = value;
-}
-
-int Parser::getSize() const
-{
-    return size;
-}
-
-void Parser::setSize(int value)
-{
-    size = value;
 }

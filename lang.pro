@@ -21,7 +21,7 @@ SOURCES += \
         parser/ast/blockstatement.cpp \
         parser/ast/expression.cpp \
         parser/ast/functionexpression.cpp \
-        parser/ast/printstatement.cpp \
+        parser/ast/functionstatement.cpp \
         parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
         parser/ast/valueexpression.cpp \
@@ -51,7 +51,7 @@ HEADERS += \
     parser/ast/blockstatement.h \
     parser/ast/expression.h \
     parser/ast/functionexpression.h \
-    parser/ast/printstatement.h \
+    parser/ast/functionstatement.h \
     parser/ast/statement.h \
     parser/ast/unaryexpression.h \
     parser/ast/valueexpression.h \

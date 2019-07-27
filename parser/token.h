@@ -10,7 +10,7 @@ enum class TokenType
     LBRACE, RBRACE, LBRACKET, RBRACKET, COMMA,
 
     GT, LT, EQEQ, NOTEQ, GTEQ, LTEQ,
-    PRINT, TRUE, FALSE, IF, ELSE, NOT, AND, OR,
+    TRUE, FALSE, IF, ELSE, NOT, AND, OR,
     END
 };
 
