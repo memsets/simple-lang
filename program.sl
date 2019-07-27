@@ -5,5 +5,5 @@
         temp = 5 + 10
     }
     hello = 5 >= 6
-    print hello
+    print true or false
 }

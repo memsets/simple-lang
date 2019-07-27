@@ -63,6 +63,10 @@ std::shared_ptr<Value> BinaryExpression::eval()
             return std::make_shared<BooleanValue>(value1->asBoolean() + value2->asBoolean());
         case TokenType::MINUS:
             return std::make_shared<BooleanValue>(value1->asBoolean() - value2->asBoolean());
+        case TokenType::AND:
+            return std::make_shared<BooleanValue>(value1->asBoolean() && value2->asBoolean());
+        case TokenType::OR:
+            return std::make_shared<BooleanValue>(value1->asBoolean() || value2->asBoolean());
         default:
             return nullptr;
         }

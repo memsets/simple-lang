@@ -27,6 +27,8 @@ Lexer::Lexer(QString source) : source(source)
     this->keywords["print"] = TokenType::PRINT;
     this->keywords["true"] = TokenType::TRUE;
     this->keywords["false"] = TokenType::FALSE;
+    this->keywords["and"] = TokenType::AND;
+    this->keywords["or"] = TokenType::OR;
 }
 
 QVector<Token> Lexer::tokenize()

@@ -55,7 +55,26 @@ std::shared_ptr<Statement> Parser::assignmentStatement()
 
 std::shared_ptr<Expression> Parser::expression()
 {
-    return conditional();
+    return logical();
+}
+
+std::shared_ptr<Expression> Parser::logical()
+{
+    auto expr = conditional();
+
+    while (true) {
+        if (match(TokenType::AND)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::AND, expr, conditional()));
+            continue;
+        } else if (match(TokenType::OR)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::OR, expr, conditional()));
+            continue;
+        }
+        break;
+    }
+    return expr;
 }
 
 std::shared_ptr<Expression> Parser::conditional()
