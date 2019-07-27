@@ -172,6 +172,15 @@ std::shared_ptr<Expression> Parser::primary()
     if (match(TokenType::NUM)) {
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<DoubleValue>(current.getText().toDouble())));
+    } else if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LPAREN) {
+        match(TokenType::WORD);
+        match(TokenType::LPAREN);
+        QVector<std::shared_ptr<Expression>> args;
+        while (!match(TokenType::RPAREN)) {
+            args.append(expression());
+            match(TokenType::COMMA);
+        }
+        return std::make_shared<FunctionExpression>(current.getText(), args);
     } else if (match(TokenType::TEXT)) {
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<StringValue>(current.getText())));

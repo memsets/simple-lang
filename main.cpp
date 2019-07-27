@@ -7,6 +7,13 @@
 #include "parser/lexer.h"
 #include "parser/parser.h"
 #include "parser/lib/doublevalue.h"
+#include "parser/lib/functioncontainer.h"
+#include "parser/lib/function.h"
+
+void init_functions()
+{
+    FunctionContainer::set("sin", std::make_shared<_sin>(_sin()));
+}
 
 void init_constants()
 {
@@ -18,6 +25,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     init_constants();
+    init_functions();
 
     QFile file("/home/sanicko/cpp-proj/lang/program.sl");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -29,6 +37,11 @@ int main(int argc, char *argv[])
     Lexer lex(source);
 
     QVector<Token> tokens = lex.tokenize();
+    for (auto &token : tokens) {
+        qInfo() << token.getText();
+    }
+    qInfo() << "===========";
+
     Parser parser(tokens);
 
 

@@ -1,7 +1,7 @@
 #include "lexer.h"
 
 const QChar Lexer::END = '\0';
-const QString Lexer::OPERATOR_CHARS = "+-*/()%={}<>!";
+const QString Lexer::OPERATOR_CHARS = "+-*/()%={}<>!,";
 
 Lexer::Lexer(QString source) : source(source)
 {
@@ -17,6 +17,7 @@ Lexer::Lexer(QString source) : source(source)
     this->operators["="] = TokenType::EQ;
     this->operators["{"] = TokenType::LBRACE;
     this->operators["}"] = TokenType::RBRACE;
+    this->operators[","] = TokenType::COMMA;
     this->operators["<"] = TokenType::LT;
     this->operators[">"] = TokenType::GT;
     this->operators["=="] = TokenType::EQEQ;

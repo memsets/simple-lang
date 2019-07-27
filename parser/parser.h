@@ -19,6 +19,8 @@
 #include "ast/blockstatement.h"
 #include "lib/stringvalue.h"
 #include "lib/booleanvalue.h"
+#include "ast/functionexpression.h"
+
 
 class Parser
 {

@@ -20,6 +20,7 @@ SOURCES += \
         parser/ast/binaryexpression.cpp \
         parser/ast/blockstatement.cpp \
         parser/ast/expression.cpp \
+        parser/ast/functionexpression.cpp \
         parser/ast/printstatement.cpp \
         parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
@@ -28,6 +29,8 @@ SOURCES += \
         parser/lexer.cpp \
         parser/lib/booleanvalue.cpp \
         parser/lib/doublevalue.cpp \
+        parser/lib/function.cpp \
+        parser/lib/functioncontainer.cpp \
         parser/lib/stringvalue.cpp \
         parser/lib/value.cpp \
         parser/lib/variablecontainer.cpp \
@@ -47,6 +50,7 @@ HEADERS += \
     parser/ast/binaryexpression.h \
     parser/ast/blockstatement.h \
     parser/ast/expression.h \
+    parser/ast/functionexpression.h \
     parser/ast/printstatement.h \
     parser/ast/statement.h \
     parser/ast/unaryexpression.h \
@@ -55,6 +59,8 @@ HEADERS += \
     parser/lexer.h \
     parser/lib/booleanvalue.h \
     parser/lib/doublevalue.h \
+    parser/lib/function.h \
+    parser/lib/functioncontainer.h \
     parser/lib/stringvalue.h \
     parser/lib/value.h \
     parser/lib/variablecontainer.h \
