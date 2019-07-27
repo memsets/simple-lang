@@ -1,6 +1,7 @@
 #include "lexer.h"
 
 const QChar Lexer::END = '\0';
+const QString Lexer::OPERATOR_CHARS = "+-*/()%={}<>!";
 
 Lexer::Lexer(QString source) : source(source)
 {
@@ -16,6 +17,12 @@ Lexer::Lexer(QString source) : source(source)
     this->operators["="] = TokenType::EQ;
     this->operators["{"] = TokenType::LBRACE;
     this->operators["}"] = TokenType::RBRACE;
+    this->operators["<"] = TokenType::LT;
+    this->operators[">"] = TokenType::GT;
+    this->operators["=="] = TokenType::EQEQ;
+    this->operators["!="] = TokenType::NOTEQ;
+    this->operators["<="] = TokenType::LTEQ;
+    this->operators[">="] = TokenType::GTEQ;
 
     this->keywords["print"] = TokenType::PRINT;
     this->keywords["true"] = TokenType::TRUE;
@@ -25,8 +32,8 @@ Lexer::Lexer(QString source) : source(source)
 QVector<Token> Lexer::tokenize()
 {
     while (pos < source.size()) {
-        QChar current = peek(0);
 
+        QChar current = peek(0);
         if (current.isDigit()) {
             tokenizeNumber();
         } else if (current == '\"') {
@@ -69,11 +76,20 @@ void Lexer::tokenizeNumber()
 
 void Lexer::tokenizeOperator()
 {
-    const QChar current = peek(0);
+    QChar current = peek(0);
 
-    Token token(operators[current], "");
-    tokens.append(token);
-    next();
+    QString buffer;
+    while (OPERATOR_CHARS.indexOf(current) != -1) {
+        buffer.append(current);
+        current = next();
+    }
+
+    if (operators.values().contains(operators[buffer])) {
+        Token token(operators[buffer], buffer);
+        tokens.append(token);
+    } else {
+        qFatal("Unknown operator");
+    }
 }
 
 void Lexer::tokenizeWord()

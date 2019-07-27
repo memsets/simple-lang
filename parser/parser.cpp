@@ -55,7 +55,42 @@ std::shared_ptr<Statement> Parser::assignmentStatement()
 
 std::shared_ptr<Expression> Parser::expression()
 {
-    return additive();
+    return conditional();
+}
+
+std::shared_ptr<Expression> Parser::conditional()
+{
+    auto expr = additive();
+
+    while (true) {
+        if (match(TokenType::LT)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::LT, expr, additive()));
+            continue;
+        } else if (match(TokenType::GT)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::GT, expr, additive()));
+            continue;
+        } else if (match(TokenType::EQEQ)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::EQEQ, expr, additive()));
+            continue;
+        } else if (match(TokenType::NOTEQ)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::NOTEQ, expr, additive()));
+            continue;
+        } else if (match(TokenType::LTEQ)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::LTEQ, expr, additive()));
+            continue;
+        } else if (match(TokenType::GTEQ)) {
+            expr = std::make_shared<BinaryExpression>(
+                        BinaryExpression(TokenType::GTEQ, expr, additive()));
+            continue;
+        }
+        break;
+    }
+    return expr;
 }
 
 std::shared_ptr<Expression> Parser::additive()

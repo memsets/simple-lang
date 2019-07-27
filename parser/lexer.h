@@ -11,6 +11,7 @@
 
 class Lexer
 {
+    static const QString OPERATOR_CHARS;
     static const QChar END;
     QHash<QString, TokenType> operators;
     QHash<QString, TokenType> keywords;

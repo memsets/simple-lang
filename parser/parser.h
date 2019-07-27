@@ -32,6 +32,7 @@ public:
     std::shared_ptr<Statement> printStatement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
+    std::shared_ptr<Expression> conditional();
     std::shared_ptr<Expression> additive();
     std::shared_ptr<Expression> multiplicative();
     std::shared_ptr<Expression> unary();

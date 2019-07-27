@@ -2,8 +2,8 @@
 
 {
     {
-
+        temp = 5 + 10
     }
-    hello = "HELLO" + "world"
-    print false + false + false
+    hello = 5 >= 6
+    print hello
 }

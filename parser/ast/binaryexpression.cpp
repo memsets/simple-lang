@@ -33,6 +33,18 @@ std::shared_ptr<Value> BinaryExpression::eval()
         case TokenType::PER:
             return std::make_shared<DoubleValue>(
                         static_cast<int>(value1->asDouble()) % static_cast<int>(value2->asDouble()));
+        case TokenType::LT:
+            return std::make_shared<BooleanValue>(value1->asDouble() < value2->asDouble());
+        case TokenType::GT:
+            return std::make_shared<BooleanValue>(value1->asDouble() > value2->asDouble());
+        case TokenType::EQEQ:
+            return std::make_shared<BooleanValue>(value1->asDouble() == value2->asDouble()); //unsafe
+        case TokenType::NOTEQ:
+            return std::make_shared<BooleanValue>(value1->asDouble() != value2->asDouble()); //unsafe
+        case TokenType::LTEQ:
+            return std::make_shared<BooleanValue>(value1->asDouble() <= value2->asDouble());
+        case TokenType::GTEQ:
+            return std::make_shared<BooleanValue>(value1->asDouble() >= value2->asDouble());
         default:
             return nullptr;
         }
@@ -49,6 +61,8 @@ std::shared_ptr<Value> BinaryExpression::eval()
         switch (operation) {
         case TokenType::PLUS:
             return std::make_shared<BooleanValue>(value1->asBoolean() + value2->asBoolean());
+        case TokenType::MINUS:
+            return std::make_shared<BooleanValue>(value1->asBoolean() - value2->asBoolean());
         default:
             return nullptr;
         }
