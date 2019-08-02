@@ -4,6 +4,7 @@
 #include <QString>
 #include <QVector>
 #include <memory>
+#include <typeinfo>
 
 #include "../lib/variablecontainer.h"
 #include "expression.h"
@@ -12,9 +13,9 @@
 class ArrayExpression : public Expression
 {
     QString name;
-    std::shared_ptr<Expression> expression;
+    QVector<std::shared_ptr<Expression>> indices;
 public:
-    ArrayExpression(QString name, std::shared_ptr<Expression> expression);
+    ArrayExpression(QString name, QVector<std::shared_ptr<Expression>> indices);
     std::shared_ptr<Value> eval() override;
 };
 

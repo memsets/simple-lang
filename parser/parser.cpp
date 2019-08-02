@@ -208,10 +208,15 @@ std::shared_ptr<Expression> Parser::primary()
     } else if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LBRACKET) {
         QString name = current.getText();
         match(TokenType::WORD);
-        match(TokenType::LBRACKET);
-        std::shared_ptr<Expression> e = std::make_shared<ArrayExpression>(name, expression());
-        match(TokenType::RBRACKET);
-        return e;
+
+        QVector<std::shared_ptr<Expression>> indices;
+        do {
+            match(TokenType::LBRACKET);
+            indices.append(expression());
+            match(TokenType::RBRACKET);
+            // TODO: Needs refactoring this condition
+        } while (peek(0).getType() == TokenType::LBRACKET);
+        return std::make_shared<ArrayExpression>(name, indices);
     } else if (match(TokenType::WORD)) {
         return std::make_shared<VariableExpression>(VariableExpression(current.getText()));
     } else if (match(TokenType::TRUE)) {

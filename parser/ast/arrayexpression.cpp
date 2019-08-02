@@ -1,16 +1,21 @@
 #include "arrayexpression.h"
 
-ArrayExpression::ArrayExpression(QString name, std::shared_ptr<Expression> expression) : Expression (),
+ArrayExpression::ArrayExpression(QString name, QVector<std::shared_ptr<Expression>> indices) : Expression (),
     name(name),
-    expression(expression)
+    indices(indices)
 {
 }
 
 std::shared_ptr<Value> ArrayExpression::eval()
 {
-    std::shared_ptr<Value> val = VariableContainer::get(name);
-    if (auto v = std::dynamic_pointer_cast<ArrayValue>(val)) {
-        return v->index(expression->eval());
+    std::shared_ptr<Value> value = VariableContainer::get(name);
+
+    for (int i = 0; i < indices.size(); i++) {
+        if (auto arrValue = std::dynamic_pointer_cast<ArrayValue>(value)) {
+            value = arrValue->index(indices[i]->eval());
+        } else {
+            throw std::runtime_error("Cannot cast value to array");
+        }
     }
-    throw std::runtime_error("Cannot cast value to array");
+    return value;
 }
