@@ -53,6 +53,26 @@ std::shared_ptr<Statement> Parser::functionStatement()
         return std::make_shared<FunctionStatement>(FunctionStatement(name, args));
 
     }
+    return arrayStatement();
+}
+
+std::shared_ptr<Statement> Parser::arrayStatement()
+{
+    std::cout << "hello" << std::endl;
+    if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LBRACKET) {
+        QString name = peek(0).getText();
+        match(TokenType::WORD);
+
+        QVector<std::shared_ptr<Expression>> indices;
+        do {
+            match(TokenType::LBRACKET);
+            indices.append(expression());
+            match(TokenType::RBRACKET);
+        } while (peek(0).getType() == TokenType::LBRACKET);
+
+        match(TokenType::EQ);
+        return std::make_shared<ArrayStatement>(name, indices, expression());
+    }
     return assignmentStatement();
 }
 

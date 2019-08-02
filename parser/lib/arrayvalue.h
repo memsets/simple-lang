@@ -17,7 +17,8 @@ public:
     bool asBoolean() override;
     QString asString() override;
     double asDouble() override;
-    std::shared_ptr<Value> index(std::shared_ptr<Value> index);
+    std::shared_ptr<Value>& index(std::shared_ptr<Value> index);
+    void set(std::shared_ptr<Value> index, std::shared_ptr<Value> value);
 
 };
 

@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         parser/ast/arrayexpression.cpp \
+        parser/ast/arraystatement.cpp \
         parser/ast/assignmentstatement.cpp \
         parser/ast/binaryexpression.cpp \
         parser/ast/blockstatement.cpp \
@@ -49,6 +50,7 @@ DISTFILES += \
 
 HEADERS += \
     parser/ast/arrayexpression.h \
+    parser/ast/arraystatement.h \
     parser/ast/assignmentstatement.h \
     parser/ast/binaryexpression.h \
     parser/ast/blockstatement.h \

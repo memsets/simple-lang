@@ -1,11 +1,9 @@
 // hello world
 
-{
-    {
-        temp = 5 + 10
-    }
 
-    hello = array(5, array(2, array(1)), array(2, 6))
 
-    print(hello[1][1][0])
-}
+hello = array(5, 5, 5)
+hello[0] = 10
+hello[1] = array(1,1,1)
+print(hello)
+print(hello[0])

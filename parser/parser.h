@@ -21,6 +21,7 @@
 #include "ast/functionexpression.h"
 #include "ast/functionstatement.h"
 #include "ast/arrayexpression.h"
+#include "ast/arraystatement.h"
 
 class Parser
 {
@@ -32,6 +33,7 @@ public:
     QVector<std::shared_ptr<Statement>> statement();
     std::shared_ptr<Statement> blockStatement();
     std::shared_ptr<Statement> functionStatement();
+    std::shared_ptr<Statement> arrayStatement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
     std::shared_ptr<Expression> logical();
