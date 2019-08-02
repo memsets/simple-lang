@@ -4,5 +4,8 @@
     {
         temp = 5 + 10
     }
-    print(sin(PI))
+
+    hello = array(5,6,5)
+
+    print(hello[1])
 }

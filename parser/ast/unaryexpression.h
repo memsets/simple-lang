@@ -3,11 +3,13 @@
 
 #include <QtDebug>
 #include <memory>
+#include <typeinfo>
 
 #include "expression.h"
 #include "../token.h"
 #include "../lib/value.h"
 #include "../lib/doublevalue.h"
+#include "../lib/booleanvalue.h"
 
 class UnaryExpression : public Expression
 {

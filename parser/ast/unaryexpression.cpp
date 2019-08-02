@@ -12,15 +12,27 @@ UnaryExpression::UnaryExpression()
 
 std::shared_ptr<Value> UnaryExpression::eval()
 {
-    const double number = expr->eval()->asDouble();
-    switch (operation) {
-    case TokenType::MINUS:
-        return std::make_shared<DoubleValue>(-number);
-    case TokenType::PLUS:
-        return std::make_shared<DoubleValue>(number);
-    default:
-        qFatal("Unknown this unary operation");
+    std::shared_ptr<Value> value = expr->eval();
+
+    if (std::dynamic_pointer_cast<DoubleValue>(value)) {
+        switch (operation) {
+        case TokenType::MINUS:
+            return std::make_shared<DoubleValue>(-value->asDouble());
+        case TokenType::PLUS:
+            return std::make_shared<DoubleValue>(value->asDouble());
+        default:
+            qFatal("Unknown unary operation");
+        }
+    } else if (std::dynamic_pointer_cast<BooleanValue>(value)) {
+        switch (operation) {
+        case TokenType::NOT:
+            return std::make_shared<BooleanValue>(!value->asBoolean());
+        default:
+            qFatal("Unknown unary operation");
+        }
     }
+
+    qFatal("Unknown operands");
 }
 
 TokenType UnaryExpression::getOperation() const

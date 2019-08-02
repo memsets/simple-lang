@@ -10,6 +10,7 @@
 
 #include "function.h"
 #include "doublevalue.h"
+#include "arrayvalue.h"
 
 class _native_sin : public Function
 {
@@ -38,6 +39,15 @@ public:
             qInfo() << value->asString();
         }
         return std::make_shared<DoubleValue>(DoubleValue(0.0));
+    }
+};
+
+class _native_array : public Function
+{
+public:
+    std::shared_ptr<Value> exec(QVector<std::shared_ptr<Value>> values) override
+    {
+        return std::make_shared<ArrayValue>(values);
     }
 };
 

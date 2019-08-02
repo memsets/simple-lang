@@ -10,11 +10,14 @@
 #include "parser/lib/functioncontainer.h"
 #include "parser/lib/function.h"
 
+#define DEBUG
+
 void init_functions()
 {
     FunctionContainer::set("sin", std::make_shared<_native_sin>(_native_sin()));
     FunctionContainer::set("cos", std::make_shared<_native_cos>(_native_cos()));
     FunctionContainer::set("print", std::make_shared<_native_print>(_native_print()));
+    FunctionContainer::set("array", std::make_shared<_native_array>(_native_array()));
 }
 
 void init_constants()

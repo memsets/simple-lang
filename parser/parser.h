@@ -15,12 +15,12 @@
 #include "ast/variableexpression.h"
 #include "ast/statement.h"
 #include "ast/assignmentstatement.h"
-#include "ast/printstatement.h"
 #include "ast/blockstatement.h"
 #include "lib/stringvalue.h"
 #include "lib/booleanvalue.h"
 #include "ast/functionexpression.h"
 #include "ast/functionstatement.h"
+#include "ast/arrayexpression.h"
 
 class Parser
 {

@@ -24,11 +24,14 @@ Lexer::Lexer(QString source) : source(source)
     this->operators["!="] = TokenType::NOTEQ;
     this->operators["<="] = TokenType::LTEQ;
     this->operators[">="] = TokenType::GTEQ;
+    this->operators["["] = TokenType::LBRACKET;
+    this->operators["]"] = TokenType::RBRACKET;
 
     this->keywords["true"] = TokenType::TRUE;
     this->keywords["false"] = TokenType::FALSE;
     this->keywords["and"] = TokenType::AND;
     this->keywords["or"] = TokenType::OR;
+    this->keywords["not"] = TokenType::NOT;
 }
 
 QVector<Token> Lexer::tokenize()

@@ -8,6 +8,8 @@ Parser::Parser(QVector<Token> tokens) : tokens(tokens)
 
 Parser::Parser()
 {
+    this->pos = 0;
+    this->size = 0;
 }
 
 QVector<std::shared_ptr<Statement>> Parser::statement()
@@ -35,6 +37,7 @@ std::shared_ptr<Statement> Parser::blockStatement()
 
 std::shared_ptr<Statement> Parser::functionStatement()
 {
+    // TODO: Needs refactoring this condition
     if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LPAREN) {
         QString name = peek(0).getText();
 
@@ -67,13 +70,13 @@ std::shared_ptr<Statement> Parser::assignmentStatement()
 
 std::shared_ptr<Expression> Parser::expression()
 {
+    // head of all expressions.
     return logical();
 }
 
 std::shared_ptr<Expression> Parser::logical()
 {
     auto expr = conditional();
-
     while (true) {
         if (match(TokenType::AND)) {
             expr = std::make_shared<BinaryExpression>(
@@ -92,7 +95,6 @@ std::shared_ptr<Expression> Parser::logical()
 std::shared_ptr<Expression> Parser::conditional()
 {
     auto expr = additive();
-
     while (true) {
         if (match(TokenType::LT)) {
             expr = std::make_shared<BinaryExpression>(
@@ -127,7 +129,6 @@ std::shared_ptr<Expression> Parser::conditional()
 std::shared_ptr<Expression> Parser::additive()
 {
     auto expr = multiplicative();
-
     while (true) {
         if (match(TokenType::PLUS)) {
             expr = std::make_shared<BinaryExpression>(
@@ -146,7 +147,6 @@ std::shared_ptr<Expression> Parser::additive()
 std::shared_ptr<Expression> Parser::multiplicative()
 {
     auto expr = unary();
-
     while (true) {
         if (match(TokenType::STAR)) {
             expr = std::make_shared<BinaryExpression>(
@@ -174,6 +174,9 @@ std::shared_ptr<Expression> Parser::unary()
     } else if (match(TokenType::PLUS)) {
         return std::make_shared<UnaryExpression>(
                     UnaryExpression(TokenType::PLUS, primary()));
+    } else if (match(TokenType::NOT)) {
+        return std::make_shared<UnaryExpression>(
+                    UnaryExpression(TokenType::NOT, primary()));
     }
     return primary();
 }
@@ -201,6 +204,14 @@ std::shared_ptr<Expression> Parser::primary()
         std::shared_ptr<Expression> expr = expression();
         match(TokenType::RPAREN);
         return expr;
+        // TODO: Needs refactoring this condition
+    } else if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LBRACKET) {
+        QString name = current.getText();
+        match(TokenType::WORD);
+        match(TokenType::LBRACKET);
+        std::shared_ptr<Expression> e = std::make_shared<ArrayExpression>(name, expression());
+        match(TokenType::RBRACKET);
+        return e;
     } else if (match(TokenType::WORD)) {
         return std::make_shared<VariableExpression>(VariableExpression(current.getText()));
     } else if (match(TokenType::TRUE)) {

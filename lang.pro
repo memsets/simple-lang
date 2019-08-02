@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+        parser/ast/arrayexpression.cpp \
         parser/ast/assignmentstatement.cpp \
         parser/ast/binaryexpression.cpp \
         parser/ast/blockstatement.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
         parser/ast/valueexpression.cpp \
         parser/ast/variableexpression.cpp \
         parser/lexer.cpp \
+        parser/lib/arrayvalue.cpp \
         parser/lib/booleanvalue.cpp \
         parser/lib/doublevalue.cpp \
         parser/lib/function.cpp \
@@ -46,6 +48,7 @@ DISTFILES += \
     program.sl
 
 HEADERS += \
+    parser/ast/arrayexpression.h \
     parser/ast/assignmentstatement.h \
     parser/ast/binaryexpression.h \
     parser/ast/blockstatement.h \
@@ -57,6 +60,7 @@ HEADERS += \
     parser/ast/valueexpression.h \
     parser/ast/variableexpression.h \
     parser/lexer.h \
+    parser/lib/arrayvalue.h \
     parser/lib/booleanvalue.h \
     parser/lib/doublevalue.h \
     parser/lib/function.h \
