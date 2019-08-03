@@ -24,5 +24,4 @@ void ArrayStatement::exec()
 
     auto last = std::dynamic_pointer_cast<ArrayValue>(arr);
     last->set(indices[indices.size() - 1]->eval(), value->eval());
-//    arr = value->eval();
 }

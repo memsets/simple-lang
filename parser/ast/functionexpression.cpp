@@ -18,6 +18,13 @@ std::shared_ptr<Value> FunctionExpression::eval()
         qFatal("Unknown function");
     }
 
+    std::shared_ptr<Function> func = FunctionContainer::get(name);
+
+    if (auto f = std::dynamic_pointer_cast<UserFunction>(func)) {
+        for (int i = 0; i < args.size(); i++) {
+            VariableContainer::set(f->getArgNames()[i], args[i]->eval());
+        }
+    }
 
     return FunctionContainer::get(name)->exec(values);
 }

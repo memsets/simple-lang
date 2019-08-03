@@ -22,6 +22,7 @@ SOURCES += \
         parser/ast/binaryexpression.cpp \
         parser/ast/blockstatement.cpp \
         parser/ast/expression.cpp \
+        parser/ast/functiondefinestatement.cpp \
         parser/ast/functionexpression.cpp \
         parser/ast/functionstatement.cpp \
         parser/ast/statement.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
         parser/lib/function.cpp \
         parser/lib/functioncontainer.cpp \
         parser/lib/stringvalue.cpp \
+        parser/lib/userfunction.cpp \
         parser/lib/value.cpp \
         parser/lib/variablecontainer.cpp \
         parser/parser.cpp \
@@ -55,6 +57,7 @@ HEADERS += \
     parser/ast/binaryexpression.h \
     parser/ast/blockstatement.h \
     parser/ast/expression.h \
+    parser/ast/functiondefinestatement.h \
     parser/ast/functionexpression.h \
     parser/ast/functionstatement.h \
     parser/ast/statement.h \
@@ -68,6 +71,7 @@ HEADERS += \
     parser/lib/function.h \
     parser/lib/functioncontainer.h \
     parser/lib/stringvalue.h \
+    parser/lib/userfunction.h \
     parser/lib/value.h \
     parser/lib/variablecontainer.h \
     parser/parser.h \

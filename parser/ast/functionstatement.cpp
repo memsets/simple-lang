@@ -12,5 +12,13 @@ void FunctionStatement::exec()
     for (auto &arg : args) {
         values.append(arg->eval());
     }
-    FunctionContainer::get(name)->exec(values);
+    std::shared_ptr<Function> func = FunctionContainer::get(name);
+
+    if (auto f = std::dynamic_pointer_cast<UserFunction>(func)) {
+        for (int i = 0; i < args.size(); i++) {
+            VariableContainer::set(f->getArgNames()[i], args[i]->eval());
+        }
+    }
+
+    func->exec(values);
 }

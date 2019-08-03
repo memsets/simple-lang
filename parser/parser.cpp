@@ -31,8 +31,28 @@ std::shared_ptr<Statement> Parser::blockStatement()
         }
         return std::make_shared<BlockStatement>(BlockStatement(statements));
     }
-    return functionStatement();
+    return functionDefineStatement();
 
+}
+
+std::shared_ptr<Statement> Parser::functionDefineStatement()
+{
+    if (match(TokenType::FUNCTION)) {
+        QString name = peek(0).getText();
+
+        match(TokenType::WORD);
+        match(TokenType::LPAREN);
+
+        QVector<QString> args;
+        while (!match(TokenType::RPAREN)) {
+            args.append(peek(0).getText());
+            match(TokenType::WORD);
+            match(TokenType::COMMA);
+        }
+        return std::make_shared<FunctionDefineStatement>(
+                    FunctionDefineStatement(name, args, blockStatement()));
+    }
+    return functionStatement();
 }
 
 std::shared_ptr<Statement> Parser::functionStatement()
@@ -58,7 +78,6 @@ std::shared_ptr<Statement> Parser::functionStatement()
 
 std::shared_ptr<Statement> Parser::arrayStatement()
 {
-    std::cout << "hello" << std::endl;
     if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LBRACKET) {
         QString name = peek(0).getText();
         match(TokenType::WORD);

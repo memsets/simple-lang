@@ -8,6 +8,8 @@
 #include "../lib/value.h"
 #include "expression.h"
 #include "../lib/functioncontainer.h"
+#include "../lib/userfunction.h"
+#include "../lib/variablecontainer.h"
 
 
 class FunctionExpression : public Expression

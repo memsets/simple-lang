@@ -1,9 +1,10 @@
 // hello world
 
+function foo(a, b) {
+    a = 5
+    print(a)
+    b = 20
+    print(b)
+}
 
-
-hello = array(5, 5, 5)
-hello[0] = 10
-hello[1] = array(1,1,1)
-print(hello)
-print(hello[0])
+foo()
