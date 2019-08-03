@@ -25,6 +25,7 @@ SOURCES += \
         parser/ast/functiondefinestatement.cpp \
         parser/ast/functionexpression.cpp \
         parser/ast/functionstatement.cpp \
+        parser/ast/returnstatement.cpp \
         parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
         parser/ast/valueexpression.cpp \
@@ -60,6 +61,7 @@ HEADERS += \
     parser/ast/functiondefinestatement.h \
     parser/ast/functionexpression.h \
     parser/ast/functionstatement.h \
+    parser/ast/returnstatement.h \
     parser/ast/statement.h \
     parser/ast/unaryexpression.h \
     parser/ast/valueexpression.h \

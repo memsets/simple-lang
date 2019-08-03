@@ -33,6 +33,7 @@ Lexer::Lexer(QString source) : source(source)
     this->keywords["or"] = TokenType::OR;
     this->keywords["not"] = TokenType::NOT;
     this->keywords["function"] = TokenType::FUNCTION;
+    this->keywords["return"] = TokenType::RETURN;
 }
 
 QVector<Token> Lexer::tokenize()

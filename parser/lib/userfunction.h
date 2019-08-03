@@ -8,6 +8,7 @@
 #include "function.h"
 #include "../ast/statement.h"
 #include "doublevalue.h"
+#include "../ast/returnstatement.h"
 
 class UserFunction : public Function
 {

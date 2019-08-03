@@ -52,6 +52,14 @@ std::shared_ptr<Statement> Parser::functionDefineStatement()
         return std::make_shared<FunctionDefineStatement>(
                     FunctionDefineStatement(name, args, blockStatement()));
     }
+    return returnStatement();
+}
+
+std::shared_ptr<Statement> Parser::returnStatement()
+{
+    if (match(TokenType::RETURN)) {
+        return std::make_shared<ReturnStatement>(ReturnStatement(expression()));
+    }
     return functionStatement();
 }
 

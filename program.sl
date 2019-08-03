@@ -1,10 +1,7 @@
 // hello world
 
 function foo(a, b) {
-    a = 5
-    print(a)
-    b = 20
-    print(b)
+    return a + b
 }
 
-foo()
+print(foo(5, 10))
