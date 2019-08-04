@@ -48,6 +48,8 @@ public:
     std::shared_ptr<Expression> primary();
     Token peek(const int relativePosition) const;
     bool match(TokenType type);
+    bool lookMatch(TokenType type, const int relativePosition = 0);
+    void consume(TokenType type);
 };
 
 #endif // PARSER_H

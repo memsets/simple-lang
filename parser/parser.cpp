@@ -40,13 +40,13 @@ std::shared_ptr<Statement> Parser::functionDefineStatement()
     if (match(TokenType::FUNCTION)) {
         QString name = peek(0).getText();
 
-        match(TokenType::WORD);
-        match(TokenType::LPAREN);
+        consume(TokenType::WORD);
+        consume(TokenType::LPAREN);
 
         QVector<QString> args;
         while (!match(TokenType::RPAREN)) {
             args.append(peek(0).getText());
-            match(TokenType::WORD);
+            consume(TokenType::WORD);
             match(TokenType::COMMA);
         }
         return std::make_shared<FunctionDefineStatement>(
@@ -66,11 +66,11 @@ std::shared_ptr<Statement> Parser::returnStatement()
 std::shared_ptr<Statement> Parser::functionStatement()
 {
     // TODO: Needs refactoring this condition
-    if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LPAREN) {
+    if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LPAREN, 1)) {
         QString name = peek(0).getText();
 
-        match(TokenType::WORD);
-        match(TokenType::LPAREN);
+        consume(TokenType::WORD);
+        consume(TokenType::LPAREN);
 
         QVector<std::shared_ptr<Expression>> args;
         while (!match(TokenType::RPAREN)) {
@@ -86,18 +86,18 @@ std::shared_ptr<Statement> Parser::functionStatement()
 
 std::shared_ptr<Statement> Parser::arrayStatement()
 {
-    if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LBRACKET) {
+    if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LBRACKET, 1)) {
         QString name = peek(0).getText();
-        match(TokenType::WORD);
+        consume(TokenType::WORD);
 
         QVector<std::shared_ptr<Expression>> indices;
         do {
-            match(TokenType::LBRACKET);
+            consume(TokenType::LBRACKET);
             indices.append(expression());
-            match(TokenType::RBRACKET);
+            consume(TokenType::RBRACKET);
         } while (peek(0).getType() == TokenType::LBRACKET);
 
-        match(TokenType::EQ);
+        consume(TokenType::EQ);
         return std::make_shared<ArrayStatement>(name, indices, expression());
     }
     return assignmentStatement();
@@ -105,14 +105,13 @@ std::shared_ptr<Statement> Parser::arrayStatement()
 
 std::shared_ptr<Statement> Parser::assignmentStatement()
 {
-    // TODO: Needs refactoring this condition
-    if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::EQ) {
+    if (lookMatch(TokenType::WORD) && lookMatch(TokenType::EQ, 1)) {
         QString name = peek(0).getText();
-        match(TokenType::WORD);
-        match(TokenType::EQ);
+        consume(TokenType::WORD);
+        consume(TokenType::EQ);
         return std::make_shared<AssignmentStatement>(AssignmentStatement(name, expression()));
     }
-    qFatal("Unknown statement");
+    throw std::runtime_error("Unknown statement");
 }
 
 std::shared_ptr<Expression> Parser::expression()
@@ -235,9 +234,9 @@ std::shared_ptr<Expression> Parser::primary()
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<DoubleValue>(current.getText().toDouble())));
         // TODO: Needs refactoring this condition
-    } else if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LPAREN) {
-        match(TokenType::WORD);
-        match(TokenType::LPAREN);
+    } else if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LPAREN, 1)) {
+        consume(TokenType::WORD);
+        consume(TokenType::LPAREN);
         QVector<std::shared_ptr<Expression>> args;
         while (!match(TokenType::RPAREN)) {
             args.append(expression());
@@ -249,20 +248,18 @@ std::shared_ptr<Expression> Parser::primary()
                     ValueExpression(std::make_shared<StringValue>(current.getText())));
     } else if (match(TokenType::LPAREN)) {
         std::shared_ptr<Expression> expr = expression();
-        match(TokenType::RPAREN);
+        consume(TokenType::RPAREN);
         return expr;
-        // TODO: Needs refactoring this condition
-    } else if (peek(0).getType() == TokenType::WORD && peek(1).getType() == TokenType::LBRACKET) {
+    } else if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LBRACKET, 1)) {
         QString name = current.getText();
-        match(TokenType::WORD);
+        consume(TokenType::WORD);
 
         QVector<std::shared_ptr<Expression>> indices;
         do {
-            match(TokenType::LBRACKET);
+            consume(TokenType::LBRACKET);
             indices.append(expression());
-            match(TokenType::RBRACKET);
-            // TODO: Needs refactoring this condition
-        } while (peek(0).getType() == TokenType::LBRACKET);
+            consume(TokenType::RBRACKET);
+        } while (lookMatch(TokenType::LBRACKET));
         return std::make_shared<ArrayExpression>(name, indices);
     } else if (match(TokenType::WORD)) {
         return std::make_shared<VariableExpression>(VariableExpression(current.getText()));
@@ -273,7 +270,7 @@ std::shared_ptr<Expression> Parser::primary()
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<BooleanValue>(false)));
     } else {
-        qFatal("Unknown token");
+        throw std::runtime_error("Unknown token");
     }
 }
 
@@ -294,4 +291,22 @@ bool Parser::match(TokenType type)
         return true;
     }
     return false;
+}
+
+bool Parser::lookMatch(TokenType type, const int relativePosition)
+{
+    const Token current = peek(relativePosition);
+    if (current.getType() == type) {
+        return true;
+    }
+    return false;
+}
+
+void Parser::consume(TokenType type)
+{
+    const Token current = peek(0);
+    if (current.getType() != type) {
+        throw std::runtime_error("Other token expected");
+    }
+    pos++;
 }
