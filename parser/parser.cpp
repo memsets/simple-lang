@@ -65,7 +65,6 @@ std::shared_ptr<Statement> Parser::returnStatement()
 
 std::shared_ptr<Statement> Parser::functionStatement()
 {
-    // TODO: Needs refactoring this condition
     if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LPAREN, 1)) {
         QString name = peek(0).getText();
 
@@ -99,6 +98,77 @@ std::shared_ptr<Statement> Parser::arrayStatement()
 
         consume(TokenType::EQ);
         return std::make_shared<ArrayStatement>(name, indices, expression());
+    }
+    return continueStatement();
+}
+
+std::shared_ptr<Statement> Parser::continueStatement()
+{
+    if (match(TokenType::CONTINUE)) {
+        return std::make_shared<ContinueStatement>(ContinueStatement());
+    }
+    return breakStatement();
+}
+
+std::shared_ptr<Statement> Parser::breakStatement()
+{
+    if (match(TokenType::BREAK)) {
+        return std::make_shared<BreakStatement>(BreakStatement());
+    }
+    return forStatement();
+}
+
+std::shared_ptr<Statement> Parser::forStatement()
+{
+    if (lookMatch(TokenType::FOR) && lookMatch(TokenType::LPAREN, 1)) {
+        consume(TokenType::FOR);
+        consume(TokenType::LPAREN);
+
+        std::shared_ptr<Statement> initialization = functionDefineStatement();
+        consume(TokenType::SEMICOLON);
+
+        std::shared_ptr<Expression> expr = expression();
+        consume(TokenType::SEMICOLON);
+
+        std::shared_ptr<Statement> increment = functionDefineStatement();
+        consume(TokenType::RPAREN);
+
+        return std::make_shared<ForStatement>(
+                    ForStatement(initialization, expr, increment, blockStatement()));
+    }
+    return whileStatement();
+}
+
+std::shared_ptr<Statement> Parser::whileStatement()
+{
+    if (lookMatch(TokenType::WHILE) && lookMatch(TokenType::LPAREN, 1)) {
+        consume(TokenType::WHILE);
+        consume(TokenType::LPAREN);
+
+        std::shared_ptr<Expression> expr = expression();
+        consume(TokenType::RPAREN);
+
+        std::shared_ptr<Statement> whileState = blockStatement();
+        return std::make_shared<WhileStatement>(WhileStatement(expr, whileState));
+    }
+    return ifStatement();
+}
+
+std::shared_ptr<Statement> Parser::ifStatement()
+{
+    if (lookMatch(TokenType::IF) && lookMatch(TokenType::LPAREN, 1)) {
+        consume(TokenType::IF);
+        consume(TokenType::LPAREN);
+
+        std::shared_ptr<Expression> expr = expression();
+        consume(TokenType::RPAREN);
+
+        std::shared_ptr<Statement> ifState = blockStatement();
+        std::shared_ptr<Statement> elseState = nullptr;
+        if (match(TokenType::ELSE)) {
+            std::shared_ptr<Statement> elseState = blockStatement();
+        }
+        return std::make_shared<IfStatement>(IfStatement(expr, ifState, elseState));
     }
     return assignmentStatement();
 }
@@ -233,7 +303,6 @@ std::shared_ptr<Expression> Parser::primary()
     if (match(TokenType::NUM)) {
         return std::make_shared<ValueExpression>(
                     ValueExpression(std::make_shared<DoubleValue>(current.getText().toDouble())));
-        // TODO: Needs refactoring this condition
     } else if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LPAREN, 1)) {
         consume(TokenType::WORD);
         consume(TokenType::LPAREN);

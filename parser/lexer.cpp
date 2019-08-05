@@ -1,7 +1,7 @@
 #include "lexer.h"
 
 const QChar Lexer::END = '\0';
-const QString Lexer::OPERATOR_CHARS = "+-*/()%={}<>!,";
+const QString Lexer::OPERATOR_CHARS = "+-*/()%={}<>!,;";
 
 Lexer::Lexer(QString source) : source(source)
 {
@@ -26,6 +26,7 @@ Lexer::Lexer(QString source) : source(source)
     this->operators[">="] = TokenType::GTEQ;
     this->operators["["] = TokenType::LBRACKET;
     this->operators["]"] = TokenType::RBRACKET;
+    this->operators[";"] = TokenType::SEMICOLON;
 
     this->keywords["true"] = TokenType::TRUE;
     this->keywords["false"] = TokenType::FALSE;
@@ -34,6 +35,13 @@ Lexer::Lexer(QString source) : source(source)
     this->keywords["not"] = TokenType::NOT;
     this->keywords["function"] = TokenType::FUNCTION;
     this->keywords["return"] = TokenType::RETURN;
+    this->keywords["if"] = TokenType::IF;
+    this->keywords["else"] = TokenType::ELSE;
+    this->keywords["while"] = TokenType::WHILE;
+    this->keywords["for"] = TokenType::FOR;
+    this->keywords["break"] = TokenType::BREAK;
+    this->keywords["continue"] = TokenType::CONTINUE;
+
 }
 
 QVector<Token> Lexer::tokenize()
@@ -49,7 +57,7 @@ QVector<Token> Lexer::tokenize()
             tokenizeComment();
         } else if (current == '/' && peek(1) == '*') {
             tokenizeMultilineComment();
-        } else if (operators.contains(current)) {
+        } else if (OPERATOR_CHARS.contains(current)) {
             tokenizeOperator();
         } else if (current.isLetter()) {
             tokenizeWord();
@@ -68,7 +76,7 @@ void Lexer::tokenizeNumber()
     QString buffer;
     while (current.isDigit() || current == '.') {
         if (pointReceived == true && current == '.') {
-            qFatal("float number parsing error (not expected point)");
+            throw std::runtime_error("float number parsing error (not expected point)");
         }
         if (current == '.') {
             pointReceived = true;

@@ -11,9 +11,9 @@ AssignmentStatement::AssignmentStatement()
 
 void AssignmentStatement::exec()
 {
-    if (VariableContainer::isExists(name)) {
-        qFatal("This variable already exists");
-    }
+//    if (VariableContainer::isExists(name)) {
+//        qFatal("This variable already exists");
+//    }
     VariableContainer::set(name, expr->eval());
 }
 

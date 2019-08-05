@@ -21,15 +21,20 @@ SOURCES += \
         parser/ast/assignmentstatement.cpp \
         parser/ast/binaryexpression.cpp \
         parser/ast/blockstatement.cpp \
+        parser/ast/breakstatement.cpp \
+        parser/ast/continuestatement.cpp \
         parser/ast/expression.cpp \
+        parser/ast/forstatement.cpp \
         parser/ast/functiondefinestatement.cpp \
         parser/ast/functionexpression.cpp \
         parser/ast/functionstatement.cpp \
+        parser/ast/ifstatement.cpp \
         parser/ast/returnstatement.cpp \
         parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
         parser/ast/valueexpression.cpp \
         parser/ast/variableexpression.cpp \
+        parser/ast/whilestatement.cpp \
         parser/lexer.cpp \
         parser/lib/arrayvalue.cpp \
         parser/lib/booleanvalue.cpp \
@@ -57,15 +62,20 @@ HEADERS += \
     parser/ast/assignmentstatement.h \
     parser/ast/binaryexpression.h \
     parser/ast/blockstatement.h \
+    parser/ast/breakstatement.h \
+    parser/ast/continuestatement.h \
     parser/ast/expression.h \
+    parser/ast/forstatement.h \
     parser/ast/functiondefinestatement.h \
     parser/ast/functionexpression.h \
     parser/ast/functionstatement.h \
+    parser/ast/ifstatement.h \
     parser/ast/returnstatement.h \
     parser/ast/statement.h \
     parser/ast/unaryexpression.h \
     parser/ast/valueexpression.h \
     parser/ast/variableexpression.h \
+    parser/ast/whilestatement.h \
     parser/lexer.h \
     parser/lib/arrayvalue.h \
     parser/lib/booleanvalue.h \

@@ -24,6 +24,11 @@
 #include "ast/arraystatement.h"
 #include "ast/functiondefinestatement.h"
 #include "ast/returnstatement.h"
+#include "ast/ifstatement.h"
+#include "ast/whilestatement.h"
+#include "ast/forstatement.h"
+#include "ast/continuestatement.h"
+#include "ast/breakstatement.h"
 
 class Parser
 {
@@ -38,6 +43,11 @@ public:
     std::shared_ptr<Statement> returnStatement();
     std::shared_ptr<Statement> functionStatement();
     std::shared_ptr<Statement> arrayStatement();
+    std::shared_ptr<Statement> continueStatement();
+    std::shared_ptr<Statement> breakStatement();
+    std::shared_ptr<Statement> forStatement();
+    std::shared_ptr<Statement> whileStatement();
+    std::shared_ptr<Statement> ifStatement();
     std::shared_ptr<Statement> assignmentStatement();
     std::shared_ptr<Expression> expression();
     std::shared_ptr<Expression> logical();
