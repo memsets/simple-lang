@@ -16,7 +16,14 @@ class IfStatement : public Statement
 public:
     IfStatement(std::shared_ptr<Expression> condition, std::shared_ptr<Statement> ifStatement,
                 std::shared_ptr<Statement> elseStatement);
+    IfStatement();
     void exec() override;
+    std::shared_ptr<Expression> getCondition() const;
+    void setCondition(const std::shared_ptr<Expression> &value);
+    std::shared_ptr<Statement> getIfStatement() const;
+    void setIfStatement(const std::shared_ptr<Statement> &value);
+    std::shared_ptr<Statement> getElseStatement() const;
+    void setElseStatement(const std::shared_ptr<Statement> &value);
 };
 
 #endif // IFSTATEMENT_H

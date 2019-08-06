@@ -11,7 +11,7 @@ class VariableExpression : public Expression
 {
     QString name;
 public:
-    VariableExpression(QString name);
+    VariableExpression(const QString &name);
     VariableExpression();
     std::shared_ptr<Value> eval() override;
     QString getName() const;

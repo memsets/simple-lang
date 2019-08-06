@@ -28,7 +28,7 @@ double ArrayValue::asDouble()
 }
 
 //needs move asDouble pairs to expression
-std::shared_ptr<Value>& ArrayValue::index(std::shared_ptr<Value> index)
+std::shared_ptr<Value> &ArrayValue::index(std::shared_ptr<Value> index)
 {
     int i = static_cast<int>(index->asDouble());
     return values[i];

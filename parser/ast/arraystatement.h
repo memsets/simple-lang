@@ -18,8 +18,16 @@ class ArrayStatement : public Statement
     QVector<std::shared_ptr<Expression>> indices;
     std::shared_ptr<Expression> value;
 public:
-    ArrayStatement(QString name, QVector<std::shared_ptr<Expression>> indices, std::shared_ptr<Expression> value);
+    ArrayStatement(const QString &name, QVector<std::shared_ptr<Expression>> indices,
+                   std::shared_ptr<Expression> value);
+    ArrayStatement();
     void exec() override;
+    std::shared_ptr<Expression> getValue() const;
+    void setValue(const std::shared_ptr<Expression> &value);
+    QVector<std::shared_ptr<Expression> > getIndices() const;
+    void setIndices(const QVector<std::shared_ptr<Expression> > &value);
+    QString getName() const;
+    void setName(const QString &value);
 };
 
 #endif // ARRAYSTATEMENT_H

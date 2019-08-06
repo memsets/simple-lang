@@ -16,10 +16,15 @@
 class FunctionStatement : public Statement
 {
     QString name;
-    QVector<std::shared_ptr<Expression>> args;
+    QVector<std::shared_ptr<Expression>> arguments;
 public:
-    FunctionStatement(QString name, QVector<std::shared_ptr<Expression>> args);
+    FunctionStatement(const QString &name, const QVector<std::shared_ptr<Expression>> &arguments);
+    FunctionStatement();
     void exec() override;
+    QString getName() const;
+    void setName(const QString &value);
+    QVector<std::shared_ptr<Expression> > getArguments() const;
+    void setArguments(const QVector<std::shared_ptr<Expression> > &value);
 };
 
 #endif // FUNCTIONSTATEMENT_H

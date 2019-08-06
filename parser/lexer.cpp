@@ -3,7 +3,7 @@
 const QChar Lexer::END = '\0';
 const QString Lexer::OPERATOR_CHARS = "+-*/()%={}<>!,;";
 
-Lexer::Lexer(QString source) : source(source)
+Lexer::Lexer(const QString &source) : source(source)
 {
     this->pos = 0;
 

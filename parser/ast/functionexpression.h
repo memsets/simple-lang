@@ -15,10 +15,16 @@
 class FunctionExpression : public Expression
 {
     QString name;
-    QVector<std::shared_ptr<Expression>> args;
+    QVector<std::shared_ptr<Expression>> arguments;
 public:
-    FunctionExpression(QString name, QVector<std::shared_ptr<Expression>> args);
+    FunctionExpression(const QString &name,
+                       const QVector<std::shared_ptr<Expression>> &arguments);
+    FunctionExpression();
     std::shared_ptr<Value> eval() override;
+    QString getName() const;
+    void setName(const QString &value);
+    QVector<std::shared_ptr<Expression> > getArguments() const;
+    void setArguments(const QVector<std::shared_ptr<Expression> > &value);
 };
 
 #endif // FUNCTIONEXPRESSION_H

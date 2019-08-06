@@ -1,7 +1,9 @@
 #include "assignmentstatement.h"
 
-AssignmentStatement::AssignmentStatement(QString name, std::shared_ptr<Expression> expr) : Statement(),
-    name(name), expr(expr)
+AssignmentStatement::AssignmentStatement(const QString &name, std::shared_ptr<Expression> expr) :
+    Statement(),
+    name(name),
+    expr(expr)
 {
 }
 

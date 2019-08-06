@@ -15,8 +15,12 @@ class ArrayExpression : public Expression
     QString name;
     QVector<std::shared_ptr<Expression>> indices;
 public:
-    ArrayExpression(QString name, QVector<std::shared_ptr<Expression>> indices);
+    ArrayExpression(const QString &name, QVector<std::shared_ptr<Expression>> indices);
     std::shared_ptr<Value> eval() override;
+    QString getName() const;
+    void setName(const QString &value);
+    QVector<std::shared_ptr<Expression> > getIndices() const;
+    void setIndices(const QVector<std::shared_ptr<Expression> > &value);
 };
 
 #endif // ARRAYEXPRESSION_H

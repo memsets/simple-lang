@@ -14,7 +14,7 @@ class AssignmentStatement : public Statement
     QString name;
     std::shared_ptr<Expression> expr;
 public:
-    AssignmentStatement(QString name, std::shared_ptr<Expression> expr);
+    AssignmentStatement(const QString &name, std::shared_ptr<Expression> expr);
     AssignmentStatement();
     void exec() override;
     ~AssignmentStatement() override;

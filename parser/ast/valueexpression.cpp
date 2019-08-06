@@ -12,3 +12,13 @@ std::shared_ptr<Value> ValueExpression::eval()
 {
     return value;
 }
+
+std::shared_ptr<Value> ValueExpression::getValue() const
+{
+    return value;
+}
+
+void ValueExpression::setValue(const std::shared_ptr<Value> &value)
+{
+    this->value = value;
+}

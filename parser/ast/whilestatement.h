@@ -18,6 +18,11 @@ class WhileStatement : public Statement
 public:
     WhileStatement(std::shared_ptr<Expression> condition, std::shared_ptr<Statement> whileStatement);
     void exec() override;
+    WhileStatement();
+    std::shared_ptr<Expression> getCondition() const;
+    void setCondition(const std::shared_ptr<Expression> &value);
+    std::shared_ptr<Statement> getWhileStatement() const;
+    void setWhileStatement(const std::shared_ptr<Statement> &value);
 };
 
 #endif // WHILESTATEMENT_H

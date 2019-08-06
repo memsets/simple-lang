@@ -14,8 +14,11 @@ class BlockStatement : public Statement
     QVector<std::shared_ptr<Statement>> statements;
 public:
     BlockStatement(QVector<std::shared_ptr<Statement>> statements);
+    BlockStatement();
     void exec() override;
     ~BlockStatement() override;
+    QVector<std::shared_ptr<Statement> > getStatements() const;
+    void setStatements(const QVector<std::shared_ptr<Statement> > &value);
 };
 
 #endif // BLOCKSTATEMENT_H

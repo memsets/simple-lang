@@ -21,3 +21,27 @@ void WhileStatement::exec()
     }
     VariableContainer::pop();
 }
+
+WhileStatement::WhileStatement()
+{
+}
+
+std::shared_ptr<Expression> WhileStatement::getCondition() const
+{
+    return condition;
+}
+
+void WhileStatement::setCondition(const std::shared_ptr<Expression> &value)
+{
+    condition = value;
+}
+
+std::shared_ptr<Statement> WhileStatement::getWhileStatement() const
+{
+    return whileStatement;
+}
+
+void WhileStatement::setWhileStatement(const std::shared_ptr<Statement> &value)
+{
+    whileStatement = value;
+}

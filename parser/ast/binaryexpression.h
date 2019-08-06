@@ -20,7 +20,7 @@ class BinaryExpression : public Expression
     std::shared_ptr<Expression> expr1;
     std::shared_ptr<Expression> expr2;
 public:
-    BinaryExpression(TokenType operation, std::shared_ptr<Expression> expr1,
+    BinaryExpression(const TokenType &operation, std::shared_ptr<Expression> expr1,
                      std::shared_ptr<Expression> expr2);
     BinaryExpression();
 

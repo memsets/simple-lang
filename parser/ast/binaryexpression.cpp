@@ -1,6 +1,6 @@
 #include "binaryexpression.h"
 
-BinaryExpression::BinaryExpression(TokenType operation,
+BinaryExpression::BinaryExpression(const TokenType &operation,
                                    std::shared_ptr<Expression> expr1,
                                    std::shared_ptr<Expression> expr2) : Expression(),
     operation(operation),
@@ -49,7 +49,7 @@ std::shared_ptr<Value> BinaryExpression::eval()
             return nullptr;
         }
     } else if (std::dynamic_pointer_cast<StringValue>(value1) &&
-               std::dynamic_pointer_cast<StringValue>(value2)) {
+                    std::dynamic_pointer_cast<StringValue>(value2)) {
         switch (operation) {
         case TokenType::PLUS:
             return std::make_shared<StringValue>(value1->asString() + value2->asString());
@@ -57,7 +57,7 @@ std::shared_ptr<Value> BinaryExpression::eval()
             return nullptr;
         }
     } else if (std::dynamic_pointer_cast<BooleanValue>(value1) &&
-               std::dynamic_pointer_cast<BooleanValue>(value2)) {
+                    std::dynamic_pointer_cast<BooleanValue>(value2)) {
         switch (operation) {
         case TokenType::PLUS:
             return std::make_shared<BooleanValue>(value1->asBoolean() + value2->asBoolean());

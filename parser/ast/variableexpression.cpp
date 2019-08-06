@@ -1,16 +1,6 @@
 #include "variableexpression.h"
 
-QString VariableExpression::getName() const
-{
-    return name;
-}
-
-void VariableExpression::setName(const QString &value)
-{
-    name = value;
-}
-
-VariableExpression::VariableExpression(QString name) : Expression(), name(name)
+VariableExpression::VariableExpression(const QString &name) : Expression(), name(name)
 {
 }
 
@@ -24,4 +14,14 @@ std::shared_ptr<Value> VariableExpression::eval()
         qFatal("Variable is not exist");
     }
     return VariableContainer::get(name);
+}
+
+QString VariableExpression::getName() const
+{
+    return name;
+}
+
+void VariableExpression::setName(const QString &value)
+{
+    name = value;
 }

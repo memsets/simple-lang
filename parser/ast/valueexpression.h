@@ -14,6 +14,8 @@ public:
     ValueExpression(std::shared_ptr<Value> value);
     ValueExpression();
     std::shared_ptr<Value> eval() override;
+    std::shared_ptr<Value> getValue() const;
+    void setValue(const std::shared_ptr<Value> &value);
 };
 
 #endif // NUMBEREXPRESSION_H

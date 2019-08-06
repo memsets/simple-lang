@@ -1,5 +1,13 @@
 #include "token.h"
 
+Token::Token(const TokenType &type, const QString &text) : type(type), text(text)
+{
+}
+
+Token::Token()
+{
+}
+
 TokenType Token::getType() const
 {
     return type;
@@ -18,12 +26,4 @@ QString Token::getText() const
 void Token::setText(const QString &value)
 {
     text = value;
-}
-
-Token::Token(TokenType type, QString text) : type(type), text(text)
-{
-}
-
-Token::Token()
-{
 }

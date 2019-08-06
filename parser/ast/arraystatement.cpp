@@ -1,11 +1,15 @@
 #include "arraystatement.h"
 
-ArrayStatement::ArrayStatement(QString name,QVector<std::shared_ptr<Expression>> indices,
+ArrayStatement::ArrayStatement(const QString &name,QVector<std::shared_ptr<Expression>> indices,
                                std::shared_ptr<Expression> value) :
     Statement (),
     name(name),
     indices(indices),
     value(value)
+{
+}
+
+ArrayStatement::ArrayStatement()
 {
 }
 
@@ -24,4 +28,34 @@ void ArrayStatement::exec()
 
     auto last = std::dynamic_pointer_cast<ArrayValue>(arr);
     last->set(indices[indices.size() - 1]->eval(), value->eval());
+}
+
+std::shared_ptr<Expression> ArrayStatement::getValue() const
+{
+    return value;
+}
+
+void ArrayStatement::setValue(const std::shared_ptr<Expression> &value)
+{
+    this->value = value;
+}
+
+QVector<std::shared_ptr<Expression> > ArrayStatement::getIndices() const
+{
+    return indices;
+}
+
+void ArrayStatement::setIndices(const QVector<std::shared_ptr<Expression> > &value)
+{
+    indices = value;
+}
+
+QString ArrayStatement::getName() const
+{
+    return name;
+}
+
+void ArrayStatement::setName(const QString &value)
+{
+    name = value;
 }

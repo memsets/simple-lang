@@ -8,6 +8,10 @@ IfStatement::IfStatement(std::shared_ptr<Expression> condition, std::shared_ptr<
 {
 }
 
+IfStatement::IfStatement()
+{
+}
+
 void IfStatement::exec()
 {
     bool cond = condition->eval()->asBoolean();
@@ -17,4 +21,34 @@ void IfStatement::exec()
     } else if (elseStatement != nullptr) {
         elseStatement->exec();
     }
+}
+
+std::shared_ptr<Expression> IfStatement::getCondition() const
+{
+    return condition;
+}
+
+void IfStatement::setCondition(const std::shared_ptr<Expression> &value)
+{
+    condition = value;
+}
+
+std::shared_ptr<Statement> IfStatement::getIfStatement() const
+{
+    return ifStatement;
+}
+
+void IfStatement::setIfStatement(const std::shared_ptr<Statement> &value)
+{
+    ifStatement = value;
+}
+
+std::shared_ptr<Statement> IfStatement::getElseStatement() const
+{
+    return elseStatement;
+}
+
+void IfStatement::setElseStatement(const std::shared_ptr<Statement> &value)
+{
+    elseStatement = value;
 }

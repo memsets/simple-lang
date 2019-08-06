@@ -20,7 +20,7 @@ class Token
     TokenType type;
     QString text;
 public:
-    Token(TokenType type, QString text);
+    Token(const TokenType &type, const QString &text);
     Token();
     TokenType getType() const;
     void setType(const TokenType &value);

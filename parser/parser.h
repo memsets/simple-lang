@@ -35,7 +35,7 @@ class Parser
     QVector<Token> tokens;
     int pos, size;
 public:
-    Parser(QVector<Token> tokens);
+    Parser(const QVector<Token> &tokens);
     Parser();
     QVector<std::shared_ptr<Statement>> statement();
     std::shared_ptr<Statement> blockStatement();

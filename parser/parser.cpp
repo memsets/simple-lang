@@ -1,6 +1,6 @@
 #include "parser.h"
 
-Parser::Parser(QVector<Token> tokens) : tokens(tokens)
+Parser::Parser(const QVector<Token> &tokens) : tokens(tokens)
 {
     this->pos = 0;
     this->size = tokens.size();

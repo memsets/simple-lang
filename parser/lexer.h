@@ -19,7 +19,7 @@ class Lexer
     const QString source;
     int pos;
 public:
-    Lexer(QString source);
+    Lexer(const QString &source);
     QVector<Token> tokenize();
     void tokenizeNumber();
     void tokenizeOperator();
