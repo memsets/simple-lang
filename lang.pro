@@ -1,4 +1,4 @@
-QT -= gui
+QT += core gui
 
 CONFIG += c++17 console
 CONFIG -= app_bundle
@@ -46,6 +46,7 @@ SOURCES += \
         parser/lib/value.cpp \
         parser/lib/variablecontainer.cpp \
         parser/parser.cpp \
+        parser/sourceloader.cpp \
         parser/token.cpp
 
 # Default rules for deployment.
@@ -87,4 +88,5 @@ HEADERS += \
     parser/lib/value.h \
     parser/lib/variablecontainer.h \
     parser/parser.h \
+    parser/sourceloader.h \
     parser/token.h

@@ -29,6 +29,7 @@ public:
     void tokenizeText();
     QChar peek(const int relativePosition) const;
     QChar next(int numOfPositions = 1);
+    QString getChunk(int relativePosition) const;
 };
 
 #endif // LEXER_H

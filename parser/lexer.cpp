@@ -53,9 +53,9 @@ QVector<Token> Lexer::tokenize()
             tokenizeNumber();
         } else if (current == '\"') {
             tokenizeText();
-        } else if (current == '/' && peek(1) == '/') {
+        } else if (getChunk(1) == "//") {
             tokenizeComment();
-        } else if (current == '/' && peek(1) == '*') {
+        } else if (getChunk(1) == "/*") {
             tokenizeMultilineComment();
         } else if (OPERATOR_CHARS.contains(current)) {
             tokenizeOperator();
@@ -122,7 +122,7 @@ void Lexer::tokenizeWord()
     }
 
     if (keywords.contains(buffer)) {
-        Token token(keywords[buffer], "");
+        Token token(keywords[buffer], buffer);
         tokens.append(token);
         return;
     } else {
@@ -147,7 +147,7 @@ void Lexer::tokenizeMultilineComment()
     next(2);
     QChar current = peek(0);
 
-    while (current != '*' && peek(1) == '/') {
+    while (getChunk(1) != "*/") {
         current = next();
     }
     next(2);
@@ -180,4 +180,13 @@ QChar Lexer::next(int numOfPositions)
 {
     pos += numOfPositions;
     return peek(0);
+}
+
+QString Lexer::getChunk(int relativePosition) const
+{
+    QString buffer;
+    for (int i = 0; i <= relativePosition; i++) {
+        buffer.append(peek(i));
+    }
+    return buffer;
 }

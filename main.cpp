@@ -9,6 +9,7 @@
 #include "parser/lib/doublevalue.h"
 #include "parser/lib/functioncontainer.h"
 #include "parser/lib/function.h"
+#include "parser/sourceloader.h"
 
 #define DEBUG
 
@@ -32,12 +33,9 @@ int main(int argc, char *argv[])
     init_constants();
     init_functions();
 
-    QFile file("/home/sanicko/cpp-proj/lang/program.sl");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        qFatal("Could not open the file");
-
-    QTextStream in(&file);
-    QString source = in.readAll();
+    SourceLoader loader("program.sl");
+    SourceLoader::setRoot("/home/sanicko/cpp-proj/lang/");
+    QString source = loader.loadFromFile();
 
     Lexer lex(source);
 
@@ -50,11 +48,11 @@ int main(int argc, char *argv[])
     Parser parser(tokens);
 
 
-    for (auto st : parser.statement()) {
+    for (auto &st : parser.statement()) {
         st->exec();
     }
 //    qInfo() << parser.expression()->eval();
 //    qInfo() << VariableContainer::get("hello");
-
     a.exit(0);
+//    return a.exec();
 }
