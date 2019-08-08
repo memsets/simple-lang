@@ -29,6 +29,8 @@
 #include "ast/forstatement.h"
 #include "ast/continuestatement.h"
 #include "ast/breakstatement.h"
+#include "ast/importstatement.h"
+
 
 class Parser
 {
@@ -39,6 +41,7 @@ public:
     Parser();
     QVector<std::shared_ptr<Statement>> statement();
     std::shared_ptr<Statement> blockStatement();
+    std::shared_ptr<Statement> importStatement();
     std::shared_ptr<Statement> functionDefineStatement();
     std::shared_ptr<Statement> returnStatement();
     std::shared_ptr<Statement> functionStatement();

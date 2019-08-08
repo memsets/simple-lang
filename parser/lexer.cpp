@@ -41,7 +41,7 @@ Lexer::Lexer(const QString &source) : source(source)
     this->keywords["for"] = TokenType::FOR;
     this->keywords["break"] = TokenType::BREAK;
     this->keywords["continue"] = TokenType::CONTINUE;
-
+    this->keywords["import"] = TokenType::IMPORT;
 }
 
 QVector<Token> Lexer::tokenize()

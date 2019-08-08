@@ -31,8 +31,20 @@ std::shared_ptr<Statement> Parser::blockStatement()
         }
         return std::make_shared<BlockStatement>(BlockStatement(statements));
     }
-    return functionDefineStatement();
+    return importStatement();
 
+}
+
+std::shared_ptr<Statement> Parser::importStatement()
+{
+    if (lookMatch(TokenType::IMPORT) && lookMatch(TokenType::WORD, 1)) {
+        consume(TokenType::IMPORT);
+        QString file = peek(0).getText();
+        consume(TokenType::WORD);
+        return std::make_shared<ImportStatement>(ImportStatement(file));
+
+    }
+    return functionDefineStatement();
 }
 
 std::shared_ptr<Statement> Parser::functionDefineStatement()

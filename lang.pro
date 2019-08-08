@@ -29,6 +29,7 @@ SOURCES += \
         parser/ast/functionexpression.cpp \
         parser/ast/functionstatement.cpp \
         parser/ast/ifstatement.cpp \
+        parser/ast/importstatement.cpp \
         parser/ast/returnstatement.cpp \
         parser/ast/statement.cpp \
         parser/ast/unaryexpression.cpp \
@@ -55,6 +56,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    lib.sl \
     program.sl
 
 HEADERS += \
@@ -71,6 +73,7 @@ HEADERS += \
     parser/ast/functionexpression.h \
     parser/ast/functionstatement.h \
     parser/ast/ifstatement.h \
+    parser/ast/importstatement.h \
     parser/ast/returnstatement.h \
     parser/ast/statement.h \
     parser/ast/unaryexpression.h \
