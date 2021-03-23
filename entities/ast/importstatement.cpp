@@ -1,5 +1,5 @@
 #include "importstatement.h"
-#include "../parser.h"
+#include "../../parsing/parser.h"
 
 ImportStatement::ImportStatement(const QString &importName) : Statement (),
     importName(importName)

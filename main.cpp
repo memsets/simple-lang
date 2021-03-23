@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     init_functions();
 
     SourceLoader loader("program.sl");
-    SourceLoader::setRoot("/home/sanicko/cpp-proj/lang/");
+    SourceLoader::setRoot("/home/memsets/simple-lang/");
     QString source = loader.loadFromFile();
 
     Lexer lex(source);
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     Parser parser(tokens);
 
 
-    for (auto &st : parser.statement()) {
+    for (const auto &st : parser.statement()) {
         st->exec();
     }
 //    qInfo() << parser.expression()->eval();

@@ -329,7 +329,9 @@ std::shared_ptr<Expression> Parser::primary()
                     ValueExpression(std::make_shared<StringValue>(current.getText())));
     } else if (match(TokenType::LPAREN)) {
         std::shared_ptr<Expression> expr = expression();
-        consume(TokenType::RPAREN);
+        if (!match(TokenType::RPAREN)) {
+            throw std::runtime_error("expected rparen");
+        }
         return expr;
     } else if (lookMatch(TokenType::WORD) && lookMatch(TokenType::LBRACKET, 1)) {
         QString name = current.getText();

@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "../lib/value.h"
+#include "../../entities/value.h"
 
 
 class Expression

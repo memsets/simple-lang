@@ -40,7 +40,7 @@ void ArrayStatement::setValue(const std::shared_ptr<Expression> &value)
     this->value = value;
 }
 
-QVector<std::shared_ptr<Expression> > ArrayStatement::getIndices() const
+QVector<std::shared_ptr<Expression>> ArrayStatement::getIndices() const
 {
     return indices;
 }

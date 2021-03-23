@@ -6,10 +6,10 @@
 #include <typeinfo>
 
 #include "expression.h"
-#include "../token.h"
-#include "../lib/value.h"
-#include "../lib/doublevalue.h"
-#include "../lib/booleanvalue.h"
+#include "../../parsing/token.h"
+#include "../../entities/value.h"
+#include "../../entities/doublevalue.h"
+#include "../../entities/booleanvalue.h"
 
 class UnaryExpression : public Expression
 {

@@ -4,8 +4,8 @@
 #include <QString>
 
 #include "expression.h"
-#include "../lib/variablecontainer.h"
-#include "../lib/value.h"
+#include "../../entities/variablecontainer.h"
+#include "../../entities/value.h"
 
 class VariableExpression : public Expression
 {

@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "expression.h"
-#include "../lib/value.h"
+#include "../../entities/value.h"
 
 class ValueExpression : public Expression
 {

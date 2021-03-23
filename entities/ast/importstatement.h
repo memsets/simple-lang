@@ -7,10 +7,10 @@
 #include <typeinfo>
 #include <iostream>
 
-#include "../lib/variablecontainer.h"
-#include "../lib/arrayvalue.h"
-#include "../sourceloader.h"
-#include "../lexer.h"
+#include "../../entities/variablecontainer.h"
+#include "../../entities/arrayvalue.h"
+#include "../../utils/sourceloader.h"
+#include "../../parsing/lexer.h"
 #include "expression.h"
 #include "statement.h"
 

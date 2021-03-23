@@ -7,7 +7,7 @@
 
 #include "expression.h"
 #include "statement.h"
-#include "../lib/variablecontainer.h"
+#include "../../entities/variablecontainer.h"
 #include "breakstatement.h"
 #include "continuestatement.h"
 

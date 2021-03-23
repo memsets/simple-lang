@@ -5,11 +5,11 @@
 #include <QVector>
 #include <memory>
 
-#include "../lib/value.h"
+#include "../../entities/value.h"
 #include "expression.h"
-#include "../lib/functioncontainer.h"
-#include "../lib/userfunction.h"
-#include "../lib/variablecontainer.h"
+#include "../../entities/functioncontainer.h"
+#include "../../entities/userfunction.h"
+#include "../../entities/variablecontainer.h"
 
 
 class FunctionExpression : public Expression

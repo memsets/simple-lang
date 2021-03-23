@@ -7,7 +7,7 @@
 
 #include "expression.h"
 #include "statement.h"
-#include "../lib/variablecontainer.h"
+#include "../../entities/variablecontainer.h"
 
 class BlockStatement : public Statement
 {

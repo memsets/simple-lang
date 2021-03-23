@@ -6,8 +6,8 @@
 
 #include "statement.h"
 #include "expression.h"
-#include "../lib/functioncontainer.h"
-#include "../lib/userfunction.h"
+#include "../../entities/functioncontainer.h"
+#include "../../entities/userfunction.h"
 
 class FunctionDefineStatement : public Statement
 {

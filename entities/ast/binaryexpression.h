@@ -6,13 +6,13 @@
 #include <memory>
 #include <typeinfo>
 
-#include "../token.h"
+#include "../../parsing/token.h"
 #include "expression.h"
-#include "../lib/value.h"
+#include "../../entities/value.h"
 #include "valueexpression.h"
-#include "../lib/doublevalue.h"
-#include "../lib/stringvalue.h"
-#include "../lib/booleanvalue.h"
+#include "../../entities/doublevalue.h"
+#include "../../entities/stringvalue.h"
+#include "../../entities/booleanvalue.h"
 
 class BinaryExpression : public Expression
 {

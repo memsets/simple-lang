@@ -6,9 +6,9 @@
 #include <memory>
 
 #include "function.h"
-#include "../ast/statement.h"
+#include "../entities/ast/statement.h"
 #include "doublevalue.h"
-#include "../ast/returnstatement.h"
+#include "../entities/ast/returnstatement.h"
 
 class UserFunction : public Function
 {

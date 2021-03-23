@@ -7,9 +7,9 @@
 #include <typeinfo>
 #include <iostream>
 
-#include "../lib/variablecontainer.h"
+#include "../../entities/variablecontainer.h"
 #include "expression.h"
-#include "../lib/arrayvalue.h"
+#include "../../entities/arrayvalue.h"
 #include "statement.h"
 
 class ArrayStatement : public Statement
